@@ -1,0 +1,4358 @@
+<!DOCTYPE html> 
+<html lang="en" xml:lang="en" > 
+<head><title>Multiple Testing Problem</title> 
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="MTP.css" /> 
+  <meta name="src" content="MTP.tex" /> 
+</head>
+
+
+
+<style type="text/css">
+  
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 10px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add an active class to highlight the current page */
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Hide the link that should open and close the topnav on small screens */
+.topnav .icon {
+  display: none;
+}
+
+.topnav-right {
+  float: right;
+}
+
+.topnav-right a:hover {
+  background-color: #333;
+  color: #f2f2f2;
+}
+
+/* When the screen is less than 700 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 700px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav-right {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 700px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+
+</style>
+
+<script type="text/javascript">
+  
+/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+
+</script>
+
+
+<body>
+
+
+
+<div class="topnav" id="myTopnav">
+  <a href="https://shusheng3927.github.io/website/">Home</a>
+    <a href="https://shusheng3927.github.io/website/notes/index.html">Notes</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
+
+  
+
+  
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-3" style="margin-top:1% ; text-align: center; background-color: #d9d9d9">
+                <div  style="font-family: 'Times', sans-serif; font-size: 32px;"><b>Zhang Ruiyang</b></div>
+                <a href="mailto:ruiyang.zhang.20@ucl.ac.uk">Email</a>
+                <br>
+                <br>
+                <a href="https://shusheng3927.github.io/website/blog/index.html">Back To Index</a>
+
+            </div>
+
+
+            <div class="col-md-9" style="height: 100vh; margin-top: 1%">
+
+                <div style="margin-top:3%;text-align: justify;">  
+                <h2 class="titleHead">Multiple Testing Problem</h2>
+                <div class="author" ><span 
+class="cmr-12">Zhang Rui-Yang</span></div>    
+
+                <h4 style="text-align: center"><a href="MTP.pdf">[PDF]</a></h4><br>                                        
+
+                                                                                
+  
+                                                                                
+
+                                                                                
+   <h2 class="likechapterHead"><a 
+ id="x1-1000"></a>Contents</h2>
+   <div class="tableofcontents">
+   <span class="chapterToc" >1 <a 
+href="#x1-20001" id="QQ2-1-2">Background</a></span>
+<br />    <span class="sectionToc" >1.1 <a 
+href="#x1-30001" id="QQ2-1-3">Frequentist Hypothesis Testing</a></span>
+<br />    <span class="sectionToc" >1.2 <a 
+href="#x1-40002" id="QQ2-1-4">Single Hypothesis Testing</a></span>
+<br />    <span class="sectionToc" >1.3 <a 
+href="#x1-50003" id="QQ2-1-6">Organisation of Chapters</a></span>
+<br />   <span class="chapterToc" >2 <a 
+href="#x1-60002" id="QQ2-1-7">Family-wise Error Rate</a></span>
+<br />    <span class="sectionToc" >2.1 <a 
+href="#x1-70001" id="QQ2-1-8">FWER</a></span>
+<br />    <span class="sectionToc" >2.2 <a 
+href="#x1-80002" id="QQ2-1-10">Bonferroni Correction</a></span>
+<br />    <span class="sectionToc" >2.3 <a 
+href="#x1-90003" id="QQ2-1-11">Holm-Bonferroni Method</a></span>
+<br />    <span class="sectionToc" >2.4 <a 
+href="#x1-100004" id="QQ2-1-12">Issues with Controlling FWER</a></span>
+<br />   <span class="chapterToc" >3 <a 
+href="#x1-110003" id="QQ2-1-13">False Discovery Rate</a></span>
+<br />    <span class="sectionToc" >3.1 <a 
+href="#x1-120001" id="QQ2-1-14">FDR</a></span>
+<br />    <span class="sectionToc" >3.2 <a 
+href="#x1-130002" id="QQ2-1-15">Benjamini-Hochberg Procedure</a></span>
+<br />    <span class="sectionToc" >3.3 <a 
+href="#x1-140003" id="QQ2-1-16">Dependency of Test Statistics</a></span>
+<br />    <span class="sectionToc" >3.4 <a 
+href="#x1-150004" id="QQ2-1-17">Alternative Proof for Theorem 1 &#x0026; 2</a></span>
+<br />   <span class="chapterToc" >4 <a 
+href="#x1-160004" id="QQ2-1-18">FDR Control using Empirical Bayes</a></span>
+<br />    <span class="sectionToc" >4.1 <a 
+href="#x1-170001" id="QQ2-1-19">Bayesian Hypothesis Testing</a></span>
+<br />    <span class="sectionToc" >4.2 <a 
+href="#x1-180002" id="QQ2-1-20">Bayes FDR</a></span>
+<br />    <span class="sectionToc" >4.3 <a 
+href="#x1-190003" id="QQ2-1-21">BH Procedure using Empirical Bayes</a></span>
+<br />    <span class="sectionToc" >4.4 <a 
+href="#x1-200004" id="QQ2-1-22">Quality of Bayesian FDR estimator</a></span>
+<br />   <span class="chapterToc" >5 <a 
+href="#x1-210005" id="QQ2-1-23">FDR Control using E-Values</a></span>
+<br />    <span class="sectionToc" >5.1 <a 
+href="#x1-220001" id="QQ2-1-24">E-Variable and E-Value</a></span>
+<br />    <span class="sectionToc" >5.2 <a 
+href="#x1-230002" id="QQ2-1-25">e-BH procedure</a></span>
+<br />   <span class="chapterToc" > <a 
+href="#Q1-1-26">Bibliography</a></span>
+   </div>
+<!--l. 78--><p class="indent" >
+                                                                                
+
+                                                                                
+                                                                                
+
+                                                                                
+</p>
+   <h2 class="chapterHead"><span class="titlemark">Chapter 1</span><br /><a 
+ id="x1-20001"></a>Background</h2>
+<a 
+ id="x1-2001r1"></a>
+<h3 class="sectionHead"><span class="titlemark">1.1   </span> <a 
+ id="x1-30001"></a>Frequentist Hypothesis Testing</h3>
+<!--l. 84--><p class="noindent" >Hypothesis testing is one of the earliest concepts of modern Statistics, and it was originally a
+Frequentist idea. There are two rather diﬀerent ways of constructing a hypothesis test under the
+Frequentist category - Fisherian test and Neyman-Pearson Test.
+</p><!--l. 86--><p class="indent" >   The Fisherian test, created by R. A. Fisher, only involves one null hypothesis. The test is carried
+out using only one hypothesis and collected data. We will calculate, under the assumption that the
+null hypothesis is true, the probability of the data we receive is at least this extreme. This
+quantity, which is also a random variable, is known as the <span 
+class="cmbx-10">p-value </span><span 
+class="cmmi-10">p</span>. To decide whether we
+would reject the hypothesis or not, we introduce a rather artiﬁcial threshold known as the
+signiﬁcance level (or <span 
+class="cmmi-10">α</span>), such that we will reject the hypothesis if <span 
+class="cmmi-10">p &#x003C; α</span>. This value, under the
+traditional Fisherian framework, is not pre-determined and may vary depending on the
+situations.
+</p><!--l. 88--><p class="indent" >   The Neyman-Pearson (NP) test, created by Jerzy Neyman and Egon Pearson, is built on
+the Neyman-Pearson lemma. It involves a pair of hypotheses, called null hypothesis <span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">0</span></sub>
+and alternative hypothesis <span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">1</span></sub>. Here, we still have the concept of signiﬁcance level <span 
+class="cmmi-10">α</span>, but
+it is deﬁned diﬀerently. Being predetermined, the signiﬁcance level is the probability of
+rejecting the null hypothesis when the null hypothesis is in fact true. This is also known as the
+probability of Type I error. The signiﬁcance level <span 
+class="cmmi-10">α </span>is heavily used in this framework, since we
+construct the rejection region of the observed data <span 
+class="cmmi-10">R</span><sub><span 
+class="cmmi-7">α</span></sub> based on the value of <span 
+class="cmmi-10">α </span>such that
+<span 
+class="msbm-10">ℙ</span>(<span 
+class="cmmi-10">R</span><sub><span 
+class="cmmi-7">α</span></sub><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">0</span></sub>) = <span 
+class="cmmi-10">α</span>. This is very diﬀerent from the Fisherian version where <span 
+class="cmmi-10">α </span>is merely a threshold for
+rejection.
+</p><!--l. 90--><p class="indent" >   The review paper by Ronald (2005) summarised various characteristics of these two methods of test
+as shown below.
+     </p><!--l. 93--><p class="noindent" >The basic elements of a Fisherian test are: (1) There is a probability model for
+     the  data.  (2)  Multidimensional  data  are  sum-  marized  into  a  test  statistic  that
+     has a known distribution. (3) This known distribution provides a ranking of the
+     “weirdness”  of  various  observations.  (4)  The  p-value,  which  is  the  probability  of
+     observing  something  as  weird  or  weirder  than  was  actually  observed,  is  used  to
+     quantify the evidence against the null hypothesis. (5) <span 
+class="cmmi-10">α </span>level tests are deﬁned by
+     reference to the p-value.
+     </p><!--l. 95--><p class="noindent" >The basic elements of an NP test are: (1) There are two hypothesized models for
+     the data: <span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">0</span></sub>  and <span 
+class="cmmi-10">H</span><sub><span 
+class="cmmi-7">A</span></sub>. (2) An <span 
+class="cmmi-10">α </span>level is chosen which is to be the probability of
+     rejecting <span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">0</span></sub> when <span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">0</span></sub> is true. (3) A rejection region is chosen so that the probability
+     of data falling into the rejection region is <span 
+class="cmmi-10">α </span>when <span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">0</span></sub> is true. With discrete data, this
+     often requires the speciﬁcation of a randomized rejection region in which certain data
+     values are randomly assigned to be in or out of the rejection region. (4) Various tests
+     are evaluated based on their power properties. Ideally, one wants the most powerful
+     test. (5) In complicated problems, properties such as unbiasedness or invariance are
+     used to restrict the class of tests prior to choosing a test with good power properties.
+</p><!--l. 98--><p class="indent" >   Though being opposing views initially, the line separating the two methods of testing has been
+severely blurred and they are all mixed up in today’s teaching and applications. Still, it is good to
+notice certain things are, in fact, originated from diﬀerent branches.
+                                                                                
+
+                                                                                
+</p><!--l. 100--><p class="indent" >   Later on, the Bayesian side of Statistics proposed the Bayes version of hypothesis testing that is
+diﬀerent from either one of the two. The Bayes hypothesis testing, also known as the Bayes factor, will
+be described in a later chapter.
+<a 
+ id="x1-3001r3"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">1.2   </span> <a 
+ id="x1-40002"></a>Single Hypothesis Testing</h3>
+<!--l. 104--><p class="noindent" >In a single hypothesis testing, we would either reject or not reject the null hypothesis <span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">0</span></sub> under a
+particular signiﬁcance level. This decision may be erroneous, and there are two kinds of errors
+associating with a test, as shown in <span 
+class="cmti-10">Table 1</span>.
+</p>
+   <div class="table">
+                                                                                
+
+                                                                                
+<!--l. 106--><p class="indent" >   <a 
+ id="x1-40011"></a></p><figure class="float" 
+>
+                                                                                
+
+                                                                                
+<div class="tabular"> <table id="TBL-2" class="tabular" 
+ 
+><colgroup id="TBL-2-1g"><col 
+id="TBL-2-1" /></colgroup><colgroup id="TBL-2-2g"><col 
+id="TBL-2-2" /></colgroup><colgroup id="TBL-2-3g"><col 
+id="TBL-2-3" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-1"  
+class="td11">            </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-2"  
+class="td11">                                    <span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">0</span></sub> is true                                                        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-3"  
+class="td11">                                   <span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">0</span></sub> is false                                                        </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-1"  
+class="td11">  Reject <span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">0</span></sub>    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-2"  
+class="td11"><!--tex4ht:inline--><div class="tabular"> <table id="TBL-3" class="tabular" 
+ 
+><colgroup id="TBL-3-1g"><col 
+id="TBL-3-1" /></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-3-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-1-1"  
+class="td00">Type I Error</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-2-1"  
+class="td00">False Positive</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-3-1"  
+class="td00"> <span 
+class="cmmi-10">α</span></td></tr></table>                                                                                         </div></td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-3"  
+class="td11"><!--tex4ht:inline--><div class="tabular"> <table id="TBL-4" class="tabular" 
+ 
+><colgroup id="TBL-4-1g"><col 
+id="TBL-4-1" /></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-4-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-4-1-1"  
+class="td00">True Positive</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-4-2-1"  
+class="td00"> 1 <span 
+class="cmsy-10">− </span><span 
+class="cmmi-10">β</span></td>
+</tr></table>                                                                                                          </div></td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-1"  
+class="td11">Not Reject <span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">0</span></sub></td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-2"  
+class="td11"><!--tex4ht:inline--><div class="tabular"> <table id="TBL-5" class="tabular" 
+ 
+><colgroup id="TBL-5-1g"><col 
+id="TBL-5-1" /></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-5-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-5-1-1"  
+class="td00">True Negative</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-5-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-5-2-1"  
+class="td00"> 1 <span 
+class="cmsy-10">− </span><span 
+class="cmmi-10">α</span></td></tr></table>                                                                                       </div></td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-3"  
+class="td11"><!--tex4ht:inline--><div class="tabular"> <table id="TBL-6" class="tabular" 
+ 
+><colgroup id="TBL-6-1g"><col 
+id="TBL-6-1" /></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-6-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-6-1-1"  
+class="td00">Type II Error</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-6-2-1"  
+class="td00">False Negative</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-6-3-1"  
+class="td00">     <span 
+class="cmmi-10">β       </span></td></tr></table>                                                                                        </div></td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-4-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-1"  
+class="td11">            </td></tr></table>
+</div>
+<figcaption class="caption" ><span class="id">Table 1.1:</span><span  
+class="content">Single Hypothesis Testing Result</span></figcaption><!--tex4ht:label?: x1-40011 -->
+                                                                                
+
+                                                                                
+   </figure>
+   </div>
+<!--l. 124--><p class="indent" >   Here, the value 1 <span 
+class="cmsy-10">− </span><span 
+class="cmmi-10">β </span>is known as the power of the test, it measures the probability that the
+test correctly rejects the null hypothesis when it is indeed false. <span 
+class="cmmi-10">α </span>is the signiﬁcance level
+of the test, which is (supposedly) predetermined and is used to decide the values of test
+statistics for the null hypothesis to be rejected. I assume these are already known to the
+readers.
+</p><!--l. 126--><p class="indent" >   Another concept associated with a hypothesis testing is its <span 
+class="cmbx-10">p-value</span>. Assuming the null hypothesis is
+true, the p-value is the probability that the test statistic is as extreme or more extreme than the one we
+obtain. It is a random variable, and its realisations for diﬀerent tests are also called p-values. When the
+p-value is smaller than the predetermined signiﬁcance level <span 
+class="cmmi-10">α</span>, we would reject the null hypothesis. One
+thing to notice about the p-value is that if the null hypothesis is true, it follows a Uniform(0,1)
+distribution.
+</p><!--l. 128--><p class="indent" >   Now, if we set our signiﬁcance alpha as 0.05, meaning that we will reject our null hypothesis if
+the p-value is less than 0.05, we will have false positive results 5% of the time - rejecting
+the null hypothesis when it is true. This chance leads to the occurrence of p-hacking, a
+way to pick a particle set of data among many that rejects the null hypothesis when <span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">0</span></sub> is
+true.
+</p><!--l. 130--><p class="indent" >   The occurrence of false positives depends on the value of <span 
+class="cmmi-10">α</span>. If we do multiple hypothesis testing to
+the same set of data while remaining with our signiﬁcance level <span 
+class="cmmi-10">α </span>for each individual test, we will have
+a much more substantial amount of errors in our results. For example, if we do 10000 hypothesis testing
+each at signiﬁcance level 5%, we will make 500 false positive decisions on average. This kind of mistakes
+is known as <span 
+class="cmbx-10">multiple testing problem</span>, or interchangeably as multiplicity and multiple
+comparisons problem. This problem does exist in reality. For example, in quantitative trait
+loci and microarray analyses, the number of hypotheses tested in an experiment reached
+thousands, which made the issue of multiple testing a more important one (Benjamini,
+2010).
+<a 
+ id="x1-4002r4"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">1.3   </span> <a 
+ id="x1-50003"></a>Organisation of Chapters</h3>
+<!--l. 134--><p class="noindent" >In Chapter 2, we will be talking about the family-wise error rate and two methods to control it. In
+Chapter 3, we will be discussing the false discovery rate, the Benjamini-Hochberg procedure, and how
+we can weaken the dependency condition of test statistics for the standard Benjamini-Hochberg
+procedure. An alternative set of proofs for this procedure will be provided as well. In Chapter 4, we will
+be discussing how we can rewrite the concept of false discovery rate using the langauge of empirical
+Bayes. In Chapter 5, we introduce the concept of e-variable and e-value, as a supplement or
+even alternative to p-value. We will also be talking about how the e-values can rewrite the
+Benjamini-Hochberg procedure.
+                                                                                
+
+                                                                                
+</p>
+   <h2 class="chapterHead"><span class="titlemark">Chapter 2</span><br /><a 
+ id="x1-60002"></a>Family-wise Error Rate</h2>
+<!--l. 138--><p class="noindent" >In this chapter, we will be introducing the concept of family-wise error rate, and state some methods
+that control it.
+<a 
+ id="x1-6001r6"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">2.1   </span> <a 
+ id="x1-70001"></a>FWER</h3>
+<!--l. 142--><p class="noindent" >Analogue to <span 
+class="cmti-10">Table 1</span>, we have the following table to establish the case when we have <span 
+class="cmmi-10">m </span>null hypotheses
+denoted by <span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,H</span><sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmmi-10">,</span><img 
+src="MTP0x.png" alt="⋅⋅⋅"  class="@cdots"  /><span style="margin-left:0.3em" class="thinspace"></span><span 
+class="cmmi-10">,H</span><sub><span 
+class="cmmi-7">m</span></sub>.
+</p>
+   <div class="table">
+                                                                                
+
+                                                                                
+<!--l. 144--><p class="indent" >   <a 
+ id="x1-70011"></a></p><figure class="float" 
+>
+                                                                                
+
+                                                                                
+<div class="tabular"> <table id="TBL-7" class="tabular" 
+ 
+><colgroup id="TBL-7-1g"><col 
+id="TBL-7-1" /></colgroup><colgroup id="TBL-7-2g"><col 
+id="TBL-7-2" /></colgroup><colgroup id="TBL-7-3g"><col 
+id="TBL-7-3" /></colgroup><colgroup id="TBL-7-4g"><col 
+id="TBL-7-4" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-7-1-1"  
+class="td11">            </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-1-2"  
+class="td11"><span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">0</span></sub> is true</td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-1-3"  
+class="td11"><span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">0</span></sub> is false</td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-1-4"  
+class="td11"> Total </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-7-2-1"  
+class="td11">  Reject <span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">0</span></sub>    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-2-2"  
+class="td11">    <span 
+class="cmmi-10">V     </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-2-3"  
+class="td11">    <span 
+class="cmmi-10">S     </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-2-4"  
+class="td11">  <span 
+class="cmmi-10">R   </span></td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-7-3-1"  
+class="td11">Not Reject <span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">0</span></sub></td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-3-2"  
+class="td11">    <span 
+class="cmmi-10">U     </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-3-3"  
+class="td11">    <span 
+class="cmmi-10">T     </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-3-4"  
+class="td11"><span 
+class="cmmi-10">m </span><span 
+class="cmsy-10">− </span><span 
+class="cmmi-10">R</span></td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-4-"><td  style="white-space:nowrap; text-align:center;" id="TBL-7-4-1"  
+class="td11">    Total      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-4-2"  
+class="td11">   <span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">0</span></sub>      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-4-3"  
+class="td11"> <span 
+class="cmmi-10">m </span><span 
+class="cmsy-10">− </span><span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">0</span></sub>  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-7-4-4"  
+class="td11">  <span 
+class="cmmi-10">m   </span></td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-5-"><td  style="white-space:nowrap; text-align:center;" id="TBL-7-5-1"  
+class="td11">            </td></tr></table></div>
+<figcaption class="caption" ><span class="id">Table 2.1:</span><span  
+class="content">Multiple Hypothesis Testing Result</span></figcaption><!--tex4ht:label?: x1-70011 -->
+                                                                                
+
+                                                                                
+   </figure>
+   </div>
+<!--l. 156--><p class="indent" >   Here, the capital letters <span 
+class="cmmi-10">V,S,U,T </span>and <span 
+class="cmmi-10">R </span>are all random variables with <span 
+class="cmmi-10">R </span>being the only observable
+one among them, and <span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">0</span></sub> and <span 
+class="cmmi-10">m </span>are known values in advanced.
+</p><!--l. 158--><p class="indent" >   According to Hochberg and Tamhane (1987), the problem of signiﬁcance arises when we view
+multiple hypothesis testing as separate inferences rather than related ones. This leads to the
+introduction of the concept of ‘family’, which is deﬁned by the authors to be ‘any collection
+of inferences for which it is meaningful to take into account some combined measure of
+errors’.
+</p><!--l. 160--><p class="indent" >   Here, the random variable <span 
+class="cmmi-10">V </span>denotes the number of Type I Errors we made among the <span 
+class="cmmi-10">m </span>decisions,
+so we would want to limit it. We will control <span 
+class="msbm-10">ℙ</span>(<span 
+class="cmmi-10">V </span><span 
+class="cmsy-10">≥ </span>1), the probability of making at least one
+false positive, and we will call this quantity as <span 
+class="cmbx-10">family-wise error rate</span>, or FWER. So, we
+have
+</p>
+   <table 
+class="equation-star"><tr><td>
+                         FWER = <span 
+class="msbm-10">ℙ</span>(<span 
+class="cmmi-10">V </span><span 
+class="cmsy-10">≥ </span>1) = 1 <span 
+class="cmsy-10">− </span><span 
+class="msbm-10">ℙ</span>(<span 
+class="cmmi-10">V </span>= 0)<span 
+class="cmmi-10">.</span>
+</td></tr></table>
+<!--l. 162--><p class="nopar" >
+When controlling the FWER, there are two types of controls, namely the weak control and the strong
+control. A particular procedure will control the FWER in the weak sense if the FWER control at level
+<span 
+class="cmmi-10">α </span>is guaranteed only when all null hypotheses are true. We will call a procedure to control the FWER
+in the strong sense if the control at level <span 
+class="cmmi-10">α </span>is guaranteed when at least one null hypothesis is
+true.
+<a 
+ id="x1-7002r8"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">2.2   </span> <a 
+ id="x1-80002"></a>Bonferroni Correction</h3>
+<!--l. 167--><p class="noindent" >One way to control the FWER is by applying the Bonferrnoi correction. If we would want the overall
+signiﬁcance level of the family of tests to be <span 
+class="cmmi-10">α</span>, then we will be setting the signiﬁcance level for each one
+of the <span 
+class="cmmi-10">m </span>test lower, and the Bonferroni correction suggests <img 
+src="MTP1x.png" alt="α-
+m"  class="frac" align="middle" />.
+</p><!--l. 169--><p class="indent" >   To show this correction actually controls the FWER, we ﬁrst have the Boole’s inequality which
+states that for a countable set of events <span 
+class="cmmi-10">A</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,A</span><sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmmi-10">,A</span><sub><span 
+class="cmr-7">3</span></sub><span 
+class="cmmi-10">,</span><img 
+src="MTP2x.png" alt="⋅⋅⋅"  class="@cdots"  /><span style="margin-left:0.3em" class="thinspace"></span>, we have
+</p>
+   <table 
+class="equation-star"><tr><td>
+                                                                                
+
+                                                                                
+                              <span 
+class="msbm-10">ℙ</span>(<span 
+class="cmex-10">⋃</span>
+  <sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">i</span></sub>) <span 
+class="cmsy-10">≤</span><span 
+class="cmex-10">∑</span>
+   <sub><span 
+class="cmmi-7">i</span></sub><span 
+class="msbm-10">ℙ</span>(<span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">i</span></sub>)<span 
+class="cmmi-10">,</span>
+</td></tr></table>
+<!--l. 171--><p class="nopar" >
+which follows from the sub-additivity property of probability measure.
+</p><!--l. 174--><p class="indent" >   With this inequality, since we are rejecting each null hypothesis <span 
+class="cmmi-10">H</span><sub><span 
+class="cmmi-7">i</span></sub> when its p-value <span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">≤</span><img 
+src="MTP3x.png" alt="α
+m-"  class="frac" align="middle" />, we
+would have
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="MTP4x.png" alt="FWER  = ℙ(V ≥ 1)
+           m0
+      = ℙ( ⋃ (p ≤ α-))   since there are m  of them with true null hypothesis
+          i=1  i  m                     0
+        m∑0
+      ≤    ℙ(pi ≤-α)    by Boole’s inequality
+        i=1      m
+        m∑0  α
+      =    --    since p-value follows Uniform (0,1) when null hypothesis is true
+        i=1m
+      = m0-α ≤ α,
+         m
+" class="math-display"  /></center></td></tr></table>
+<!--l. 183--><p class="nopar" >
+which indicates that the FWER is controlled under level <span 
+class="cmmi-10">α</span>.
+</p><!--l. 186--><p class="indent" >   It should not be too hard to notice that this control is too strict. For example, FWER is actually
+controlled under <img 
+src="MTP5x.png" alt="m
+m0-"  class="frac" align="middle" /><span 
+class="cmmi-10">α </span>instead of <span 
+class="cmmi-10">α</span>, which could be much lower if <span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">0</span></sub> is much smaller than <span 
+class="cmmi-10">m</span>. Having a
+strict control for Type I errors implies an increase in Type II errors, which is why Bonferroni correction
+is not always good. However, since his correction is an easy one to apply, it is still used in
+practice.
+<a 
+ id="x1-8001r10"></a>
+</p>
+                                                                                
+
+                                                                                
+<h3 class="sectionHead"><span class="titlemark">2.3   </span> <a 
+ id="x1-90003"></a>Holm-Bonferroni Method</h3>
+<!--l. 190--><p class="noindent" >As an improvement of the Bonferroni correction, Holm (1979) proposed the following method to
+proceed the multiple tests.
+</p><!--l. 192--><p class="indent" >   For the <span 
+class="cmmi-10">m </span>null hypotheses <span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,H</span><sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmmi-10">,</span><img 
+src="MTP6x.png" alt="⋅⋅⋅"  class="@cdots"  /><span style="margin-left:0.3em" class="thinspace"></span><span 
+class="cmmi-10">,H</span><sub><span 
+class="cmmi-7">m</span></sub>, we compute their respective p-values <span 
+class="cmmi-10">P</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,P</span><sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmmi-10">,</span><img 
+src="MTP7x.png" alt="⋅⋅⋅"  class="@cdots"  /><span style="margin-left:0.3em" class="thinspace"></span><span 
+class="cmmi-10">,P</span><sub><span 
+class="cmmi-7">m</span></sub>
+and we rank them such that <span 
+class="cmmi-10">P</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">k</span><span 
+class="cmr-7">)</span></sub> denotes the <span 
+class="cmmi-10">k</span>-th smallest p-value. So, <span 
+class="cmmi-10">P</span><sub><span 
+class="cmr-7">(1)</span></sub> <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">P</span><sub><span 
+class="cmr-7">(2)</span></sub> <span 
+class="cmsy-10">≤</span><img 
+src="MTP8x.png" alt="⋅⋅⋅"  class="@cdots"  /><span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">P</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">m</span><span 
+class="cmr-7">)</span></sub>, and
+we denote the corresponding null hypotheses as <span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">(1)</span></sub><span 
+class="cmmi-10">,H</span><sub><span 
+class="cmr-7">(2)</span></sub><span 
+class="cmmi-10">,</span><img 
+src="MTP9x.png" alt="⋅⋅⋅"  class="@cdots"  /><span style="margin-left:0.3em" class="thinspace"></span><span 
+class="cmmi-10">,H</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">m</span><span 
+class="cmr-7">)</span></sub>. We would want to control the
+FWER at <span 
+class="cmmi-10">α</span>.
+</p>
+  <ul class="itemize1">
+  <li class="itemize">Is <span 
+class="cmmi-10">P</span><sub><span 
+class="cmr-7">(1)</span></sub> <span 
+class="cmsy-10">≤</span><img 
+src="MTP10x.png" alt="αm-"  class="frac" align="middle" />? If so, reject <span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">(1)</span></sub> and continue. Otherwise, EXIT.
+  </li>
+  <li class="itemize">Is <span 
+class="cmmi-10">P</span><sub><span 
+class="cmr-7">(2)</span></sub> <span 
+class="cmsy-10">≤</span><img 
+src="MTP11x.png" alt="mα−1-"  class="frac" align="middle" />? If so, reject <span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">(2)</span></sub> and continue. Otherwise, EXIT. <br 
+class="newline" /><img 
+src="MTP12x.png" alt="..
+."  class="vdots"  /> <br 
+class="newline" />
+  </li>
+  <li class="itemize">Is <span 
+class="cmmi-10">P</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">k</span><span 
+class="cmr-7">)</span></sub> <span 
+class="cmsy-10">≤</span><img 
+src="MTP13x.png" alt="--α---
+m−k+1"  class="frac" align="middle" />? If so, reject <span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">k</span><span 
+class="cmr-7">)</span></sub> and continue. Otherwise, EXIT.</li></ul>
+<!--l. 207--><p class="noindent" >To show that this method does in fact keep the FWER at <span 
+class="cmmi-10">α</span>, we let <span 
+class="cmmi-10">I</span><sub><span 
+class="cmr-7">0</span></sub> be the set of indices
+corresponding to the true null hypothesis. This set is unknown to us and has size <span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">0</span></sub>. Let us
+assume that we make the ﬁrst false positive decision at <span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">h</span><span 
+class="cmr-7">)</span></sub>. Based on the procedures stated
+above, all the decisions for null hypothesis <span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">(1)</span></sub><span 
+class="cmmi-10">,H</span><sub><span 
+class="cmr-7">(2)</span></sub><span 
+class="cmmi-10">,</span><img 
+src="MTP14x.png" alt="⋅⋅⋅"  class="@cdots"  /><span style="margin-left:0.3em" class="thinspace"></span><span 
+class="cmmi-10">,H</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">h</span><span 
+class="cmsy-7">−</span><span 
+class="cmr-7">1)</span></sub> are true positives. Also,
+we know for a fact that <span 
+class="cmmi-10">h </span><span 
+class="cmsy-10">− </span>1 <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">m </span><span 
+class="cmsy-10">− </span><span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">0</span></sub> due to the deﬁnition of <span 
+class="cmmi-10">m </span><span 
+class="cmsy-10">− </span><span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">0</span></sub>. This implies
+that <span 
+class="cmmi-10">m </span><span 
+class="cmsy-10">− </span><span 
+class="cmmi-10">h </span>+ 1 <span 
+class="cmsy-10">≥ </span><span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">0</span></sub>, and then <img 
+src="MTP15x.png" alt="--1---
+m−h+1"  class="frac" align="middle" /> <span 
+class="cmsy-10">≤</span><img 
+src="MTP16x.png" alt="-1-
+m0"  class="frac" align="middle" />. Now, since <span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">h</span><span 
+class="cmr-7">)</span></sub> is rejected, we would have
+<span 
+class="cmmi-10">P</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">h</span><span 
+class="cmr-7">)</span></sub> <span 
+class="cmsy-10">≤</span><img 
+src="MTP17x.png" alt="--α---
+m−h+1"  class="frac" align="middle" /> by deﬁnition, so we will then have <span 
+class="cmmi-10">P</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">h</span><span 
+class="cmr-7">)</span></sub> <span 
+class="cmsy-10">≤</span><img 
+src="MTP18x.png" alt="--α---
+m−h+1"  class="frac" align="middle" /> <span 
+class="cmsy-10">≤</span><img 
+src="MTP19x.png" alt="α--
+m0"  class="frac" align="middle" />. This means, if there is
+any false positive, we have at least one true null hypothesis with p-value less than <img 
+src="MTP20x.png" alt="-α-
+m0"  class="frac" align="middle" />.
+So,
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="MTP21x.png" alt="FWER  = ℙ(V ≥ 1)
+      = ℙ( ⋃ (P ≤  α-))
+          i∈I  i   m0
+        ∑   0     α
+      ≤    ℙ(Pi ≤ m--)   by Boole’s inequality
+        i∈I0        0
+      = m0 α--   since p-value follows Uniform (0,1) when null hypothesis is true
+           m0
+      = α,
+                                                                                
+
+                                                                                
+" class="math-display"  /></center></td></tr></table>
+<!--l. 216--><p class="nopar" >
+which indicates that the FWER is controlled at level <span 
+class="cmmi-10">α</span>.
+</p><!--l. 219--><p class="indent" >   By looking at values of signiﬁcance levels that we used to reject the null hypothesis, we can
+immediate realise that the Holm-Bonferroni is uniformly more powerful than the Bonferroni correction.
+So this is, indeed, an improvement of Bonferroni.
+<a 
+ id="x1-9001r11"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">2.4   </span> <a 
+ id="x1-100004"></a>Issues with Controlling FWER</h3>
+<!--l. 223--><p class="noindent" >FWER controls the probability of making Type I errors. When we put stronger restrictions on false
+positives, we will have the problem of having more false negatives, i.e. having a higher probability of
+making Type II errors. This makes the power of the hypothesis testing decreases, and not always a
+suitable control.
+</p><!--l. 225--><p class="indent" >   According to Benjamini and Hochberg (1995), methods that control FWER have ﬂaws in real-life
+applications.
+     </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+  1. </dt><dd 
+class="enumerate-enumitem">Classical procedures that control the FWER in the strong sense, at levels conventional in
+     single-comparison problems, tend to have substantially less power than the per comparison
+     procedure of the same levels.
+     </dd><dt class="enumerate-enumitem">
+  2. </dt><dd 
+class="enumerate-enumitem">Often the control of the FWER is not quite needed. The control of the FWER is important
+     when a conclusion from the various individual inferences is likely to be erroneous when at
+     least one of them is. This may be the case, for example, when several new treatments are
+     competing against a standard, and a single treatment is chosen from the set of treatments
+     which are declared signiﬁcantly better than the standard. However, a treatment group and
+     a control group are often compared by testing various aspects of the eﬀect (diﬀerent end
+     points in clinical trials terminology). The overall conclusion that the treatment is superior
+     need not be erroneous even if some of the null hypotheses are falsely rejected.</dd></dl>
+<!--l. 236--><p class="indent" >   To improve on these aspects, Benjamini and Hochberg proposed to control a diﬀerent measure of
+error, the false discovery rate, which will be more ideal to help with the problem of multiplicity. The
+discussion will be carried out in the next chapter.
+                                                                                
+
+                                                                                
+</p>
+   <h2 class="chapterHead"><span class="titlemark">Chapter 3</span><br /><a 
+ id="x1-110003"></a>False Discovery Rate</h2>
+<!--l. 240--><p class="noindent" >In this chapter, we will be introducing the concept of false discovery rate proposed by Benjamini and
+Hochberg (1995), and state some of its controlling methods.
+<a 
+ id="x1-11001r12"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">3.1   </span> <a 
+ id="x1-120001"></a>FDR</h3>
+<!--l. 244--><p class="noindent" >As mentioned at the end of the previous chapter, controlling FWER is not always ideal. There is a need
+for a new point of view on the problem of multiplicity. A lot of the times, the number of false positive
+should be controlled, but we should also consider this number relative to the total number of rejections
+we are making. For example, among a total of 100 hypothesis testing, if we make 2 false positives
+among 5 rejections, it is rather serious. However, it we make 2 false positives among 50
+rejections, it is more bearable. The seriousness of the loss incurred by false positives is inversely
+related to the number of hypotheses rejected (Benjamini &#x0026; Hochberg, 1995). With that
+in mind, we need a diﬀerent measure of error that accounts for the proportion of errors
+among the rejected hypotheses, which is called the <span 
+class="cmbx-10">false discovery rate</span>, or FDR. The word
+‘discovery’ is used since a rejected hypothesis was called a ‘statistical discovery’ by Soriç
+(1989).
+</p><!--l. 246--><p class="indent" >   Using the notations in <span 
+class="cmti-10">Table 2</span>, we will deﬁne a new random variable <span 
+class="cmmi-10">Q </span>= <span 
+class="cmmi-10">V∕</span>(<span 
+class="cmmi-10">V </span>+ <span 
+class="cmmi-10">S</span>) where <span 
+class="cmmi-10">Q </span>= 0
+when <span 
+class="cmmi-10">V </span>+ <span 
+class="cmmi-10">S </span>= 0. This is the proportion of the false positives over all the rejected null hypotheses. This
+is unobservable since we do not know <span 
+class="cmmi-10">V </span>, or <span 
+class="cmmi-10">S</span>, or their realisations <span 
+class="cmmi-10">v </span>or <span 
+class="cmmi-10">s</span>. We will deﬁne the FDR as
+the expectation of <span 
+class="cmmi-10">Q</span>,
+</p>
+   <table 
+class="equation-star"><tr><td>
+                       FDR = <span 
+class="msbm-10">𝔼</span>[<span 
+class="cmmi-10">Q</span>] = <span 
+class="msbm-10">𝔼</span>[<span 
+class="cmmi-10">V∕</span>(<span 
+class="cmmi-10">V </span>+ <span 
+class="cmmi-10">S</span>)] = <span 
+class="msbm-10">𝔼</span>[<span 
+class="cmmi-10">V∕R</span>]<span 
+class="cmmi-10">.</span>
+</td></tr></table>
+<!--l. 248--><p class="nopar" >
+To avoid the division by zero issue, we would have the alternative formula for FDR as
+</p>
+   <table 
+class="equation-star"><tr><td>
+                                                                                
+
+                                                                                
+                           FDR = <span 
+class="msbm-10">𝔼</span>[<span 
+class="cmmi-10">V∕R</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">R &#x003E; </span>0]<span 
+class="msbm-10">ℙ</span>(<span 
+class="cmmi-10">R &#x003E; </span>0)<span 
+class="cmmi-10">.</span>
+</td></tr></table>
+<!--l. 251--><p class="nopar" >
+Two properties of FDR can be easily shown. Firstly, if all the null hypotheses are true, FDR = FWER.
+When <span 
+class="cmmi-10">s </span>= 0 and <span 
+class="cmmi-10">v </span>= <span 
+class="cmmi-10">r</span>, <span 
+class="cmmi-10">Q </span>= 0 if <span 
+class="cmmi-10">v </span>= 0 and <span 
+class="cmmi-10">Q </span>= 1 if <span 
+class="cmmi-10">v &#x003E; </span>0, which means <span 
+class="msbm-10">ℙ</span>(<span 
+class="cmmi-10">V </span><span 
+class="cmsy-10">≥ </span>1) = <span 
+class="msbm-10">𝔼</span>[<span 
+class="cmmi-10">Q</span>]. This means a
+control of FDR is a control of FWER in the weak sense. The second property is, when <span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">0</span></sub> <span 
+class="cmmi-10">&#x003C; m</span>,
+FDR is no bigger than FWER. Given <span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">0</span></sub> <span 
+class="cmmi-10">&#x003C; m</span>, <span 
+class="cmmi-10">v &#x003E; </span>0 implies <span 
+class="cmmi-10">v∕</span>(<span 
+class="cmmi-10">v </span>+ <span 
+class="cmmi-10">s</span>) <span 
+class="cmsy-10">≤ </span>1, which means
+<span 
+class="cmmi-10">V </span><span 
+class="cmsy-10">≥ </span>1<img 
+src="MTP22x.png" alt="=⇒"  class="Longrightarrow"  /><span 
+class="cmmi-10">V </span><span 
+class="cmsy-10">≥ </span><span 
+class="cmmi-10">v∕</span>(<span 
+class="cmmi-10">v </span>+ <span 
+class="cmmi-10">s</span>) and <span 
+class="msbm-10">ℙ</span>(<span 
+class="cmmi-10">V </span><span 
+class="cmsy-10">≥ </span>1) <span 
+class="cmsy-10">≥ </span><span 
+class="msbm-10">𝔼</span>[<span 
+class="cmmi-10">Q</span>]. This means a control of FWER will control
+FDR. If a procedure controls FDR only, it would be more poewrful than one that controls
+the FWER. The potential for increase in power is larger when more of the hypotheses are
+non-true.
+</p><!--l. 254--><p class="indent" >   One should note that FDR is not the only possible measure to capture the idea of the
+proportion of false positives among all the rejected null hypotheses. In Benjamini and Hochberg
+(1995), the authors mentioned two alternatives, that of <span 
+class="msbm-10">𝔼</span>[<span 
+class="cmmi-10">V∕R</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">R &#x003E; </span>0] and <span 
+class="msbm-10">𝔼</span>[<span 
+class="cmmi-10">V </span>]<span 
+class="cmmi-10">∕</span><span 
+class="msbm-10">𝔼</span>[<span 
+class="cmmi-10">R</span>]. In
+the paper, the authors explained their reasons of not choosing these two. However, they
+turned out to be rather useful later on, and we will be discussed them in detail in later
+chapters.
+<a 
+ id="x1-12001r14"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">3.2   </span> <a 
+ id="x1-130002"></a>Benjamini-Hochberg Procedure</h3>
+<!--l. 258--><p class="noindent" >In order to control the FDR as described above, Benjamini and Hochberg (1995) proposed a
+procedure that is latter commonly known as the Benjamini-Hochberg procedure, or BH
+procedure.
+</p><!--l. 260--><p class="indent" >   For the <span 
+class="cmmi-10">m </span>null hypotheses <span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,H</span><sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmmi-10">,</span><img 
+src="MTP23x.png" alt="⋅⋅⋅"  class="@cdots"  /><span style="margin-left:0.3em" class="thinspace"></span><span 
+class="cmmi-10">,H</span><sub><span 
+class="cmmi-7">m</span></sub>, we compute their respective p-values <span 
+class="cmmi-10">P</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,P</span><sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmmi-10">,</span><img 
+src="MTP24x.png" alt="⋅⋅⋅"  class="@cdots"  /><span style="margin-left:0.3em" class="thinspace"></span><span 
+class="cmmi-10">,P</span><sub><span 
+class="cmmi-7">m</span></sub>
+and we rank them such that <span 
+class="cmmi-10">P</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">k</span><span 
+class="cmr-7">)</span></sub> denotes the <span 
+class="cmmi-10">k</span>-th smallest p-value. So, <span 
+class="cmmi-10">P</span><sub><span 
+class="cmr-7">(1)</span></sub> <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">P</span><sub><span 
+class="cmr-7">(2)</span></sub> <span 
+class="cmsy-10">≤</span><img 
+src="MTP25x.png" alt="⋅⋅⋅"  class="@cdots"  /><span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">P</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">m</span><span 
+class="cmr-7">)</span></sub>, and
+we denote the corresponding null hypotheses as <span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">(1)</span></sub><span 
+class="cmmi-10">,H</span><sub><span 
+class="cmr-7">(2)</span></sub><span 
+class="cmmi-10">,</span><img 
+src="MTP26x.png" alt="⋅⋅⋅"  class="@cdots"  /><span style="margin-left:0.3em" class="thinspace"></span><span 
+class="cmmi-10">,H</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">m</span><span 
+class="cmr-7">)</span></sub>. We let the level of FDR that we
+would want to control at as <span 
+class="cmmi-10">α</span>. The procedure works as the following:
+</p>
+  <ul class="itemize1">
+  <li class="itemize">Let <span 
+class="cmmi-10">k </span>be the largest <span 
+class="cmmi-10">i </span>for which <span 
+class="cmmi-10">P</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sub> <span 
+class="cmsy-10">≤</span><img 
+src="MTP27x.png" alt="i-
+m"  class="frac" align="middle" /><span 
+class="cmmi-10">α</span>.
+  </li>
+  <li class="itemize">Reject all <span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sub> where <span 
+class="cmmi-10">i </span>= 1<span 
+class="cmmi-10">,</span>2<span 
+class="cmmi-10">,</span><img 
+src="MTP28x.png" alt="⋅⋅⋅"  class="@cdots"  /><span style="margin-left:0.3em" class="thinspace"></span><span 
+class="cmmi-10">,k</span>.</li></ul>
+<!--l. 271--><p class="indent" >   We would like to prove that this procedure does in fact control the FDR at level <span 
+class="cmmi-10">α</span>. So we have the
+following theorem.
+</p>
+   <div class="newtheorem">
+<!--l. 273--><p class="noindent" ><span class="head">
+<a 
+ id="x1-13001r1"></a>
+<span 
+class="cmbx-10">Theorem 1.</span>  </span> For <span 
+class="cmbx-10">independent </span>test statistics and for any conﬁguration of false null hypotheses,
+the above precedure controls the FDR at <span 
+class="cmmi-10">α</span>.
+</p>
+   </div>
+                                                                                
+
+                                                                                
+<!--l. 277--><p class="indent" >
+</p>
+   <div class="proof">
+<!--l. 277--><p class="indent" >   <span class="head">
+<span 
+class="cmti-10">Proof.</span> </span>(Proof of Theorem) The theorem follows from the following lemma, whose proof will be
+given after.
+</p>
+   <div class="newtheorem">
+<!--l. 280--><p class="noindent" ><span class="head">
+<a 
+ id="x1-13002r1"></a>
+<span 
+class="cmbx-10">Lemma 1.</span>  </span>For any <span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">0</span></sub> (0 <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">0</span></sub> <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">m</span>) independent p-values corresponding to true null hypotheses, and
+for any values that the <span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">1</span></sub> = <span 
+class="cmmi-10">m</span><span 
+class="cmsy-10">−</span><span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">0</span></sub> p-values corresponding to the false null hypotheses can take, the
+BH procedure satisﬁes the inequality
+</p>
+   <table 
+class="equation-star"><tr><td>
+                       <span 
+class="msbm-10">𝔼</span>[<span 
+class="cmmi-10">Q</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">P</span><sub><span 
+class="cmmi-7">m</span><sub><span 
+class="cmr-5">0</span></sub><span 
+class="cmr-7">+1</span></sub> = <span 
+class="cmmi-10">p</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,</span><img 
+src="MTP29x.png" alt="⋅⋅⋅"  class="@cdots"  /><span style="margin-left:0.3em" class="thinspace"></span><span 
+class="cmmi-10">,P</span><sub><span 
+class="cmmi-7">m</span></sub> = <span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">m</span><sub><span 
+class="cmr-5">1</span></sub></sub>] <span 
+class="cmsy-10">≤</span><img 
+src="MTP30x.png" alt="m0-
+m"  class="frac" align="middle" /><span 
+class="cmmi-10">α.</span>
+</td></tr></table>
+<!--l. 283--><p class="nopar" >
+</p>
+   </div>
+<!--l. 288--><p class="noindent" >With that, whatever the joint distribution of the p-values of the false null hypotheses <span 
+class="cmmi-10">P</span><span 
+class="cmsy-10">′′</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,</span><img 
+src="MTP31x.png" alt="⋅⋅⋅"  class="@cdots"  /><span style="margin-left:0.3em" class="thinspace"></span><span 
+class="cmmi-10">,P</span><span 
+class="cmsy-10">′′</span><sub><span 
+class="cmmi-7">m</span><sub><span 
+class="cmr-5">1</span></sub></sub> is,
+by integrating the above inequality, we would get
+</p>
+   <table 
+class="equation-star"><tr><td>
+                                                                                
+
+                                                                                
+                                <span 
+class="msbm-10">𝔼</span>[<span 
+class="cmmi-10">Q</span>] <span 
+class="cmsy-10">≤</span><img 
+src="MTP32x.png" alt="m0-
+ m"  class="frac" align="middle" /><span 
+class="cmmi-10">α </span><span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">α.</span>
+</td></tr></table>
+<!--l. 290--><p class="nopar" >
+                                                                               □
+</p>
+   </div>
+<!--l. 293--><p class="indent" >
+</p>
+   <div class="proof">
+<!--l. 293--><p class="indent" >   <span class="head">
+<span 
+class="cmti-10">Proof.</span> </span>(Proof of Lemma) The proof is completed by an induction on <span 
+class="cmmi-10">m</span>. When <span 
+class="cmmi-10">m </span>= 1, the lemma
+is true immediately. Now, assuming that the statement is true for <span 
+class="cmmi-10">m </span>= <span 
+class="cmmi-10">m</span><span 
+class="cmsy-10">′</span>, we would like to show
+that it holds for <span 
+class="cmmi-10">m</span><span 
+class="cmsy-10">′ </span>+ 1.
+</p><!--l. 298--><p class="noindent" >If <span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">0</span></sub> = 0 and <span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">1</span></sub> = <span 
+class="cmmi-10">m </span><span 
+class="cmsy-10">− </span>0 = <span 
+class="cmmi-10">m</span>, all the null hypotheses are false and <span 
+class="cmmi-10">Q </span>will be 0. This
+means
+</p>
+   <table 
+class="equation-star"><tr><td>
+                     <span 
+class="msbm-10">𝔼</span>[<span 
+class="cmmi-10">Q</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">P</span><sub><span 
+class="cmr-7">1</span></sub> = <span 
+class="cmmi-10">p</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,</span><img 
+src="MTP33x.png" alt="⋅⋅⋅"  class="@cdots"  /><span style="margin-left:0.3em" class="thinspace"></span><span 
+class="cmmi-10">,P</span><sub><span 
+class="cmmi-7">m</span></sub> = <span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">m</span></sub>] = 0 <span 
+class="cmsy-10">≤</span><img 
+src="MTP34x.png" alt="--m0--
+m ′ + 1"  class="frac" align="middle" /><span 
+class="cmmi-10">α.</span>
+</td></tr></table>
+<!--l. 300--><p class="nopar" >
+</p><!--l. 304--><p class="noindent" >If <span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">0</span></sub> <span 
+class="cmmi-10">&#x003E; </span>0, we denote the p-values corresponding to the true null hypotheses as <span 
+class="cmmi-10">P</span><span 
+class="cmsy-10">′</span><sub><span 
+class="cmmi-7">i</span></sub> with <span 
+class="cmmi-10">i </span>= 1<span 
+class="cmmi-10">,</span>2<span 
+class="cmmi-10">,</span><img 
+src="MTP35x.png" alt="⋅⋅⋅"  class="@cdots"  /><span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">0</span></sub>
+with the largest being <span 
+class="cmmi-10">P</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">m</span><sub><span 
+class="cmr-5">0</span></sub><span 
+class="cmr-7">)</span></sub>. These p-values are i.i.d. and follow Uniform(0,1). We will order the
+p-values of the <span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">1</span></sub> false null hypotheses and let them be <span 
+class="cmmi-10">p</span><sub><span 
+class="cmr-7">(1)</span></sub> <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">p</span><sub><span 
+class="cmr-7">(2)</span></sub> <span 
+class="cmsy-10">≤</span><img 
+src="MTP36x.png" alt="⋅⋅⋅"  class="@cdots"  /><span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">p</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">m</span><sub><span 
+class="cmr-5">1</span></sub><span 
+class="cmr-7">)</span></sub>. Next, we will deﬁne
+<span 
+class="cmmi-10">j</span><sub><span 
+class="cmr-7">0</span></sub> to be the largest <span 
+class="cmmi-10">j </span>in [0<span 
+class="cmmi-10">,m</span><sub><span 
+class="cmr-7">1</span></sub>] with
+</p>
+   <table 
+class="equation-star"><tr><td>
+                                                                                
+
+                                                                                
+                                 <span 
+class="cmmi-10">p</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">j</span><span 
+class="cmr-7">)</span></sub> <span 
+class="cmsy-10">≤</span><img 
+src="MTP37x.png" alt="m0-+-j
+m ′ + 1"  class="frac" align="middle" /><span 
+class="cmmi-10">α,</span>
+</td></tr></table>
+<!--l. 306--><p class="nopar" >
+and we let <span 
+class="cmmi-10">p</span><span 
+class="cmsy-10">′′</span> = <span 
+class="cmmi-10">p</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">j</span><sub><span 
+class="cmr-5">0</span></sub><span 
+class="cmr-7">)</span></sub>.
+</p><!--l. 309--><p class="indent" >   For the sake of simplicity in notation, we will let <span 
+class="cmmi-10">A </span>to denote the event <span 
+class="cmmi-10">P</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">m</span><sub><span 
+class="cmr-5">0</span></sub><span 
+class="cmr-7">+1)</span></sub> = <span 
+class="cmmi-10">p</span><sub><span 
+class="cmr-7">(1)</span></sub><span 
+class="cmmi-10">,</span><img 
+src="MTP38x.png" alt="⋅⋅⋅"  class="@cdots"  /><span style="margin-left:0.3em" class="thinspace"></span><span 
+class="cmmi-10">,P</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">m</span><span 
+class="cmr-7">)</span></sub> = <span 
+class="cmmi-10">p</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">m</span><sub><span 
+class="cmr-5">1</span></sub><span 
+class="cmr-7">)</span></sub>.
+So, conditioning on <span 
+class="cmmi-10">P</span><span 
+class="cmsy-10">′</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">m</span><sub><span 
+class="cmr-5">0</span></sub><span 
+class="cmr-7">)</span></sub> = <span 
+class="cmmi-10">p </span>for some variable <span 
+class="cmmi-10">p</span>,
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="MTP39x.png" alt="        ∫ 1
+𝔼[Q |A ] =   𝔼[Q|P′(m0) = p,A]fP′ (p)dp
+         0                  (m0)
+        ∫ p′′     ′                    ∫ 1      ′
+      =  0  𝔼[Q|P(m0) = p,A]fP′(m0)(p)dp+ p′′ 𝔼[Q |P (m0) = p,A ]fP′(m0)(p)dp
+" class="math-display"  /></center></td></tr></table>
+<!--l. 315--><p class="nopar" >
+with <span 
+class="cmmi-10">f</span><sub><span 
+class="cmmi-7">P</span><span 
+class="cmsy-7">′</span><sub><span 
+class="cmr-5">(</span><span 
+class="cmmi-5">m</span><sub>
+<span 
+class="cmr-5">0</span></sub><span 
+class="cmr-5">)</span></sub></sub>(<span 
+class="cmmi-10">p</span>) = <span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">0</span></sub><span 
+class="cmmi-10">p</span><sup><span 
+class="cmmi-7">m</span><sub><span 
+class="cmr-5">0</span></sub><span 
+class="cmsy-7">−</span><span 
+class="cmr-7">1</span></sup>.
+</p><!--l. 318--><p class="indent" >   In the ﬁrst term, we have 0 <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">p </span><span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">p</span><span 
+class="cmsy-10">′′</span>. This means we are rejecting <span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">0</span></sub> + <span 
+class="cmmi-10">j</span><sub><span 
+class="cmr-7">0</span></sub> hypotheses, and we
+would have <span 
+class="cmmi-10">Q </span>= <span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">0</span></sub><span 
+class="cmmi-10">∕</span>(<span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">0</span></sub> + <span 
+class="cmmi-10">j</span><sub><span 
+class="cmr-7">0</span></sub>). Using the inequality
+</p>
+   <table 
+class="equation-star"><tr><td>
+                                                                                
+
+                                                                                
+                              <span 
+class="cmmi-10">p</span><span 
+class="cmsy-10">′′</span> = <span 
+class="cmmi-10">p</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">j</span><sub><span 
+class="cmr-5">0</span></sub><span 
+class="cmr-7">)</span></sub> <span 
+class="cmsy-10">≤</span><img 
+src="MTP40x.png" alt="m0-+-j0
+ m ′+ 1"  class="frac" align="middle" /><span 
+class="cmmi-10">α,</span>
+</td></tr></table>
+<!--l. 320--><p class="nopar" >
+we would have
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="MTP41x.png" alt="∫ p′′                           ∫ p′′
+    𝔼[Q|P′   = p,A]f ′  (p)dp =     --m0---m0pm0−1dp
+ 0       (m0)       P(m0)        0  m0 + j0
+                             = [-m0---pm0]p′′
+                               m0 + j0    0
+                             = --m0---(p′′)m0
+                               m0 + j0
+                               --m0---m0-+-j0-  ′′m0−1
+                             ≤ m0 + j0m ′ + 1 α(p)
+                               -m0---   ′′m0− 1
+                             = m ′ +1 α(p)   .
+" class="math-display"  /></center></td></tr></table>
+<!--l. 330--><p class="nopar" >
+For the second term, we will consider separately the values of <span 
+class="cmmi-10">p </span>when <span 
+class="cmmi-10">p</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">j</span><sub><span 
+class="cmr-5">0</span></sub><span 
+class="cmr-7">)</span></sub> <span 
+class="cmmi-10">&#x003C; p</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">j</span><span 
+class="cmr-7">)</span></sub> <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">P</span><span 
+class="cmsy-10">′</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">m</span><sub><span 
+class="cmr-5">0</span></sub><span 
+class="cmr-7">)</span></sub> = <span 
+class="cmmi-10">p &#x003C; p</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">j</span><span 
+class="cmr-7">+1)</span></sub>,
+and when <span 
+class="cmmi-10">p</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">j</span><sub><span 
+class="cmr-5">0</span></sub><span 
+class="cmr-7">)</span></sub> <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">p</span><span 
+class="cmsy-10">′′</span> <span 
+class="cmmi-10">&#x003C; P</span><span 
+class="cmsy-10">′</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">m</span><sub><span 
+class="cmr-5">0</span></sub><span 
+class="cmr-7">)</span></sub> = <span 
+class="cmmi-10">p &#x003C; p</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">j</span><sub><span 
+class="cmr-5">0</span></sub><span 
+class="cmr-7">+1)</span></sub>. It is important to note that, based on the deﬁnition of
+<span 
+class="cmmi-10">j</span><sub><span 
+class="cmr-7">0</span></sub> and <span 
+class="cmmi-10">p</span><span 
+class="cmsy-10">′′</span>, no hypothesis can be rejected due to the values of <span 
+class="cmmi-10">p,p</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">j</span><span 
+class="cmr-7">+1)</span></sub><span 
+class="cmmi-10">,p</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">j</span><span 
+class="cmr-7">+2)</span></sub><span 
+class="cmmi-10">,</span><img 
+src="MTP42x.png" alt="⋅⋅⋅"  class="@cdots"  /><span style="margin-left:0.3em" class="thinspace"></span><span 
+class="cmmi-10">,p</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">m</span><sub><span 
+class="cmr-5">1</span></sub><span 
+class="cmr-7">)</span></sub><span 
+class="cmmi-10">.</span>
+Therefore, when all hypotheses are considered with ordered p-values, a hypothesis <span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sub> could
+be rejected only if there exists <span 
+class="cmmi-10">k </span>with <span 
+class="cmmi-10">i </span><span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">k </span><span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">0</span></sub> + <span 
+class="cmmi-10">j </span><span 
+class="cmsy-10">− </span>1, where <span 
+class="cmmi-10">p</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">k</span><span 
+class="cmr-7">)</span></sub> <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">α </span><span 
+class="cmsy-10">⋅ </span><span 
+class="cmmi-10">k∕</span>(<span 
+class="cmmi-10">m</span><span 
+class="cmsy-10">′ </span>+ 1),
+or
+</p>
+   <table 
+class="equation-star"><tr><td>
+                                                                                
+
+                                                                                
+                          <img 
+src="MTP43x.png" alt="p(k)-
+ p"  class="frac" align="middle" /> <span 
+class="cmsy-10">≤</span><img 
+src="MTP44x.png" alt="----k-----
+m0 + j − 1"  class="frac" align="middle" /><img 
+src="MTP45x.png" alt="m0-+-j-−-1
+ (m′ + 1)p"  class="frac" align="middle" /><span 
+class="cmmi-10">α.</span>
+</td></tr></table>
+<!--l. 333--><p class="nopar" >
+When conditioning on <span 
+class="cmmi-10">P</span><span 
+class="cmsy-10">′</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">m</span><sub><span 
+class="cmr-5">0</span></sub><span 
+class="cmr-7">)</span></sub> = <span 
+class="cmmi-10">p</span>, the <span 
+class="cmmi-10">P</span><span 
+class="cmsy-10">′</span><sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmmi-10">∕p </span>for <span 
+class="cmmi-10">i </span>= 1<span 
+class="cmmi-10">,</span>2<span 
+class="cmmi-10">,</span><img 
+src="MTP46x.png" alt="⋅⋅⋅"  class="@cdots"  /><span style="margin-left:0.3em" class="thinspace"></span><span 
+class="cmmi-10">,m</span><sub><span 
+class="cmr-7">0</span></sub> <span 
+class="cmsy-10">− </span>1 are i.i.d. random variables following
+Uniform(0,1), and the <span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmmi-10">∕p </span>for <span 
+class="cmmi-10">i </span>= 1<span 
+class="cmmi-10">,</span>2<span 
+class="cmmi-10">,</span><img 
+src="MTP47x.png" alt="⋅⋅⋅"  class="@cdots"  /><span style="margin-left:0.3em" class="thinspace"></span><span 
+class="cmmi-10">,j </span>are numbers corresponding to false null hypotheses
+between 0 and 1. Then,
+</p>
+   <table 
+class="equation-star"><tr><td>
+                <span 
+class="msbm-10">𝔼</span>[<span 
+class="cmmi-10">Q</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">P</span><span 
+class="cmsy-10">′</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">m</span><sub><span 
+class="cmr-5">0</span></sub><span 
+class="cmr-7">)</span></sub><span 
+class="cmmi-10">,A</span>] <span 
+class="cmsy-10">≤</span><img 
+src="MTP48x.png" alt="  m0 − 1
+m0-+-j −-1"  class="frac" align="middle" /><img 
+src="MTP49x.png" alt="m0 + j − 1
+(m-′ +1)p-"  class="frac" align="middle" /><span 
+class="cmmi-10">α </span>= <img 
+src="MTP50x.png" alt=" m0 − 1
+(m′ +-1)p"  class="frac" align="middle" /><span 
+class="cmmi-10">α.</span>
+</td></tr></table>
+<!--l. 336--><p class="nopar" >
+So,
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="MTP51x.png" alt="∫                             ∫
+  1 𝔼[Q |P ′  = p,A ]f ′  (p)dp ≤  1 -m0-−-1-αm  pm0 −1dp
+ p′′     (m0)       P(m0)       p′′ (m ′ + 1)p  0
+                                m     ∫ 1
+                            = --′-0-α    (m0 + 1)pm0−2dp
+                              m  + 1   p′′
+                            = --m′0--α(1− (p′′)m0−1).
+                              m  + 1
+" class="math-display"  /></center></td></tr></table>
+<!--l. 344--><p class="nopar" >
+Adding up the two terms, we would have
+</p>
+   <table 
+class="equation-star"><tr><td>
+                                                                                
+
+                                                                                
+            <span 
+class="msbm-10">𝔼</span>[<span 
+class="cmmi-10">Q</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">A</span>] <span 
+class="cmsy-10">≤</span><img 
+src="MTP52x.png" alt="-m0---
+m ′ + 1"  class="frac" align="middle" /><span 
+class="cmmi-10">α</span>(<span 
+class="cmmi-10">p</span><span 
+class="cmsy-10">′′</span>)<sup><span 
+class="cmmi-7">m</span><sub><span 
+class="cmr-5">0</span></sub><span 
+class="cmsy-7">−</span><span 
+class="cmr-7">1</span></sup> + <img 
+src="MTP53x.png" alt="--m0--
+m ′ + 1"  class="frac" align="middle" /><span 
+class="cmmi-10">α</span>(1 <span 
+class="cmsy-10">− </span>(<span 
+class="cmmi-10">p</span><span 
+class="cmsy-10">′′</span>)<sup><span 
+class="cmmi-7">m</span><sub><span 
+class="cmr-5">0</span></sub><span 
+class="cmsy-7">−</span><span 
+class="cmr-7">1</span></sup>) = <img 
+src="MTP54x.png" alt="--m0--
+m ′ + 1"  class="frac" align="middle" /><span 
+class="cmmi-10">α,</span>
+</td></tr></table>
+<!--l. 347--><p class="nopar" >
+which completes the proof.                                                                                         □
+</p>
+   </div>
+<a 
+ id="x1-13003r15"></a>
+<h3 class="sectionHead"><span class="titlemark">3.3   </span> <a 
+ id="x1-140003"></a>Dependency of Test Statistics</h3>
+<!--l. 353--><p class="noindent" >As stated in bold in Theorem <a 
+href="#x1-13001r1">1<!--tex4ht:ref: thm:BH --></a>, one condition for the BH procedure is that the test statistics need to
+be independent. This is quite a big restriction, since many hypothesis tests carried out in practice are
+dependent to each other. There is a need to make some extension of the method on that aspect, and
+these gaps are ﬁlled mostly by Benjamini and Yekutieli (2001). Here, I will state without proof some of
+the key improvements.
+</p><!--l. 355--><p class="indent" >   We have already known from the previous section that the BH procedure will control the FDR at
+(<span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">0</span></sub><span 
+class="cmmi-10">∕m</span>)<span 
+class="cmmi-10">α </span>if test statistics are independent. By Theorem 5.1 of Benjamini and Yekutieli (2001), we
+have
+</p><!--l. 359--><p class="noindent" >Independent Test Statistics:
+</p>
+   <table 
+class="equation-star"><tr><td>
+                                  FDR <span 
+class="cmsy-10">≤</span><img 
+src="MTP55x.png" alt="m
+--0
+ m"  class="frac" align="middle" /><span 
+class="cmmi-10">α,</span>
+</td></tr></table>
+<!--l. 361--><p class="nopar" >
+and Independent and Continuous Test Statistics:
+</p>
+   <table 
+class="equation-star"><tr><td>
+                                                                                
+
+                                                                                
+                                  FDR = <img 
+src="MTP56x.png" alt="m0-
+ m"  class="frac" align="middle" /><span 
+class="cmmi-10">α.</span>
+</td></tr></table>
+<!--l. 364--><p class="nopar" >
+The main result of Benjamini and Yekutieli (2001) based on the dependency type <span 
+class="cmti-10">positive regression</span>
+<span 
+class="cmti-10">dependency on each one from a subset</span>, or PRDS. First, we will call a subset <span 
+class="cmmi-10">D </span>of Ω as increasing if for
+some <span 
+class="cmmi-10">x </span><span 
+class="cmsy-10">∈ </span><span 
+class="cmmi-10">D</span>, <span 
+class="cmmi-10">y </span><span 
+class="cmsy-10">∈ </span>Ω and <span 
+class="cmmi-10">y </span><span 
+class="cmsy-10">≥ </span><span 
+class="cmmi-10">x </span>imply <span 
+class="cmmi-10">y </span><span 
+class="cmsy-10">∈ </span><span 
+class="cmmi-10">D</span>. For example, the ﬁrst quadrant of the <span 
+class="msbm-10">ℝ</span><sup><span 
+class="cmr-7">2</span></sup> plane is an
+increasing set. Here, if <span 
+class="cmmi-10">x </span>and <span 
+class="cmmi-10">y </span>has more than one coordinate, <span 
+class="cmmi-10">y </span><span 
+class="cmsy-10">≥ </span><span 
+class="cmmi-10">x </span>means <span 
+class="cmmi-10">y</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">≥ </span><span 
+class="cmmi-10">x</span><sub><span 
+class="cmmi-7">i</span></sub> for every coordinate.
+Now, if test statistics vector <span 
+class="cmbx-10">X</span> is PRDS on <span 
+class="cmmi-10">I</span><sub><span 
+class="cmr-7">0</span></sub>, it means that for any increasing set <span 
+class="cmmi-10">D </span>and each
+<span 
+class="cmmi-10">i </span><span 
+class="cmsy-10">∈ </span><span 
+class="cmmi-10">I</span><sub><span 
+class="cmr-7">0</span></sub> <span 
+class="cmsy-10">⊂ </span><span 
+class="cmmi-10">I</span>, <span 
+class="msbm-10">ℙ</span>(<span 
+class="cmbx-10">X</span> <span 
+class="cmsy-10">∈ </span><span 
+class="cmmi-10">D</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">i</span></sub> = <span 
+class="cmmi-10">x</span>) is non-decreasing as <span 
+class="cmmi-10">x </span>increases. With this, we can state the main
+result.
+</p>
+   <div class="newtheorem">
+<!--l. 367--><p class="noindent" ><span class="head">
+<a 
+ id="x1-14001r2"></a>
+<span 
+class="cmbx-10">Theorem 2.</span>  </span> If the joint distribution of the test statistics is PRDS on the subset of test statistics
+corresponding to true null hypotheses, the BH procedure controls the FDR at level less than or
+equal to (<span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">0</span></sub><span 
+class="cmmi-10">∕m</span>)<span 
+class="cmmi-10">q</span>.
+</p>
+   </div>
+<!--l. 371--><p class="indent" >
+</p>
+   <div class="proof">
+<!--l. 372--><p class="indent" >   <span class="head">
+<span 
+class="cmti-10">Proof.</span> </span>Let us deﬁne the constants involved in the BH procedure as
+</p>
+   <table 
+class="equation-star"><tr><td>
+                                                                                
+
+                                                                                
+                             <span 
+class="cmmi-10">q</span><sub><span 
+class="cmmi-7">i</span></sub> = <img 
+src="MTP57x.png" alt="-i
+m"  class="frac" align="middle" /><span 
+class="cmmi-10">q,   i </span>= 1<span 
+class="cmmi-10">,</span>2<span 
+class="cmmi-10">,</span><img 
+src="MTP58x.png" alt="⋅⋅⋅"  class="@cdots"  /><span style="margin-left:0.3em" class="thinspace"></span><span 
+class="cmmi-10">,m.</span>
+</td></tr></table>
+<!--l. 374--><p class="nopar" >
+Let <span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">v,s</span></sub> denote the event that the BH procedure rejects exactly <span 
+class="cmmi-10">v </span>true and <span 
+class="cmmi-10">s </span>false null hypotheses.
+Here, <span 
+class="cmmi-10">k </span>= <span 
+class="cmmi-10">v </span>+ <span 
+class="cmmi-10">s </span>hypotheses have been rejected, so all these hypotheses will have p-values <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">q</span><sub><span 
+class="cmmi-7">v</span><span 
+class="cmr-7">+</span><span 
+class="cmmi-7">s</span></sub>. The
+FDR will then be
+</p>
+   <table 
+class="equation-star"><tr><td>
+                       FDR = <span 
+class="cmex-10">∑</span>
+  <sub><span 
+class="cmmi-7">s</span><span 
+class="cmr-7">=0</span></sub><sup><span 
+class="cmmi-7">m</span><sub><span 
+class="cmr-5">1</span></sub>
+     </sup> <span 
+class="cmex-10">∑</span>
+  <sub><span 
+class="cmmi-7">v</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">m</span><sub><span 
+class="cmr-5">0</span></sub>
+</sup><img 
+src="MTP59x.png" alt="--v--
+v +s"  class="frac" align="middle" /><span 
+class="msbm-10">ℙ</span>(<span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">v,s</span></sub>)<span 
+class="cmmi-10">.</span>
+</td></tr></table>
+<!--l. 377--><p class="nopar" >
+Here, <span 
+class="cmmi-10">v </span>starts from 1 since <span 
+class="cmmi-10">FDR </span>= 0 if <span 
+class="cmmi-10">v </span>= 0, and <span 
+class="cmmi-10">v </span>+ <span 
+class="cmmi-10">s</span><span 
+class="cmmi-10">≠</span>0 for the fraction to make sense.
+</p><!--l. 380--><p class="indent" >   Now, we would want to ﬁnd <span 
+class="msbm-10">ℙ</span>(<span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">v,s</span></sub>). We claim that
+</p>
+   <table 
+class="equation-star"><tr><td>
+                     <span 
+class="msbm-10">ℙ</span>(<span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">v,s</span></sub>) = <img 
+src="MTP60x.png" alt="1
+v"  class="frac" align="middle" /><span 
+class="cmex-10">∑</span>
+    <sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">m</span><sub><span 
+class="cmr-5">0</span></sub>
+     </sup><span 
+class="msbm-10">ℙ</span>(<span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">P</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">q</span><sub><span 
+class="cmmi-7">v</span><span 
+class="cmr-7">+</span><span 
+class="cmmi-7">s</span></sub><span 
+class="cmsy-10">}∩ </span><span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">v,s</span></sub>)<span 
+class="cmmi-10">.</span>
+</td></tr></table>
+<!--l. 382--><p class="nopar" >
+Let us prove this claim. For a ﬁxed <span 
+class="cmmi-10">v </span>and <span 
+class="cmmi-10">s</span>, let <span 
+class="cmmi-10">ω </span>be a subset of <span 
+class="cmsy-10">{</span>1<span 
+class="cmmi-10">,</span>2<span 
+class="cmmi-10">,</span><img 
+src="MTP61x.png" alt="⋅⋅⋅"  class="@cdots"  /><span style="margin-left:0.3em" class="thinspace"></span><span 
+class="cmmi-10">,m</span><sub><span 
+class="cmr-7">0</span></sub><span 
+class="cmsy-10">} </span>of size <span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">0</span></sub>. Then, we let
+<span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">v,s</span></sub><sup><span 
+class="cmmi-7">ω</span></sup> be the event in <span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">v,s</span></sub> where the <span 
+class="cmmi-10">v </span>rejected true hypotheses have index <span 
+class="cmmi-10">ω</span>. Here, the
+index set <span 
+class="cmsy-10">{</span>1<span 
+class="cmmi-10">,</span>2<span 
+class="cmmi-10">,</span><img 
+src="MTP62x.png" alt="⋅⋅⋅"  class="@cdots"  /><span style="margin-left:0.3em" class="thinspace"></span><span 
+class="cmmi-10">,m</span><sub><span 
+class="cmr-7">0</span></sub><span 
+class="cmsy-10">} </span>is for the set of true null hypotheses. Also, the set of <span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">v,s</span></sub><sup><span 
+class="cmmi-7">ω</span></sup> for
+all possible <span 
+class="cmmi-10">ω </span>is a partition of <span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">v,s</span></sub> with each of its element being disjoint. So, we would
+have
+</p>
+                                                                                
+
+                                                                                
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="MTP63x.png" alt="                     {
+               ω      ℙ(A ωv,s) i ∈ ω
+ℙ({Pi ≤ qv+s}∩ Av,s) = 0       i∈∕ω.
+" class="math-display"  /></center></td></tr></table>
+<!--l. 389--><p class="nopar" >
+This is because, if <span 
+class="cmmi-10">i </span><span 
+class="cmsy-10">∈ </span><span 
+class="cmmi-10">ω</span>, <span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">P</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">q</span><sub><span 
+class="cmmi-7">v</span><span 
+class="cmr-7">+</span><span 
+class="cmmi-7">s</span></sub><span 
+class="cmsy-10">} </span>means that the hypothesis with index <span 
+class="cmmi-10">i </span>is rejected. So,
+<span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">P</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">q</span><sub><span 
+class="cmmi-7">v</span><span 
+class="cmr-7">+</span><span 
+class="cmmi-7">s</span></sub><span 
+class="cmsy-10">}⊃ </span><span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">v,s</span></sub><sup><span 
+class="cmmi-7">ω</span></sup>, and <span 
+class="msbm-10">ℙ</span>(<span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">P</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">q</span><sub><span 
+class="cmmi-7">v</span><span 
+class="cmr-7">+</span><span 
+class="cmmi-7">s</span></sub><span 
+class="cmsy-10">}∩ </span><span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">v,s</span></sub><sup><span 
+class="cmmi-7">ω</span></sup>) = <span 
+class="msbm-10">ℙ</span>(<span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">v,s</span></sub><sup><span 
+class="cmmi-7">ω</span></sup>). If <span 
+class="cmmi-10">i</span><img 
+src="MTP64x.png" alt="∕∈"  class="notin"  /><span 
+class="cmmi-10">ω</span>, <span 
+class="cmmi-10">i </span>will still be in <span 
+class="cmsy-10">{</span>1<span 
+class="cmmi-10">,</span>2<span 
+class="cmmi-10">,</span><img 
+src="MTP65x.png" alt="⋅⋅⋅"  class="@cdots"  /><span style="margin-left:0.3em" class="thinspace"></span><span 
+class="cmmi-10">,m</span><sub><span 
+class="cmr-7">0</span></sub><span 
+class="cmsy-10">}</span>
+since this is the way <span 
+class="cmmi-10">i </span>is summed. This implies that <span 
+class="cmmi-10">H</span><sub><span 
+class="cmmi-7">i</span></sub> becomes a rejected true null hypothesis with
+index not inside <span 
+class="cmmi-10">ω</span>, which contradicts with <span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">v,x</span></sub><sup><span 
+class="cmmi-7">ω</span></sup>. So,<span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">P</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">q</span><sub><span 
+class="cmmi-7">v</span><span 
+class="cmr-7">+</span><span 
+class="cmmi-7">s</span></sub><span 
+class="cmsy-10">} </span>and <span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">v,x</span></sub><sup><span 
+class="cmmi-7">ω</span></sup> are disjoint events, making
+the probability of their intersection 0.
+</p><!--l. 392--><p class="indent" >   Then, we would have
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="MTP66x.png" alt="m∑0                     ∑m0∑                  ω
+   ℙ({Pi ≤ qv+s} ∩ Av,s) =      ℙ ({Pi ≤ qv+s} ∩A v,s)
+i=1                     i=1 ωm
+                       ∑  ∑ 0                ω
+                     =  ω  i=1ℙ ({Pi ≤ qv+s} ∩A v,s)
+                           m0
+                     = ∑  ∑  1 (i ∈ ω )ℙ(A ω )
+                        ω  i=1           v,s
+                       ∑       ω
+                     =    vℙ (A v,s)
+                        ω
+                     = vℙ (Av,s),
+" class="math-display"  /></center></td></tr></table>
+<!--l. 401--><p class="nopar" >
+which implies <span 
+class="msbm-10">ℙ</span>(<span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">v,s</span></sub>) = <img 
+src="MTP67x.png" alt="1v"  class="frac" align="middle" /> <span 
+class="cmex-10">∑</span>
+   <sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">m</span><sub><span 
+class="cmr-5">0</span></sub></sup><span 
+class="msbm-10">ℙ</span>(<span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">P</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">q</span><sub><span 
+class="cmmi-7">v</span><span 
+class="cmr-7">+</span><span 
+class="cmmi-7">s</span></sub><span 
+class="cmsy-10">}∩ </span><span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">v,s</span></sub>).
+</p><!--l. 404--><p class="indent" >   Combining this with the statement of FDR, we have
+</p>
+                                                                                
+
+                                                                                
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="MTP68x.png" alt="      ∑m1∑m0 -v---
+FDR =        v+ sℙ(Av,s)
+      s=m01v=m10        m0
+    = ∑  ∑   -v--(1 ∑  ℙ({Pi ≤ qv+s}∩ Av,s))
+      s=0v=1 v+ s v i=1
+      ∑m0 ∑m1∑m0
+    =    (       -1--ℙ({Pi ≤ qv+s}∩ Av,s)).
+      i=1 s=0v=1 v+ s
+" class="math-display"  /></center></td></tr></table>
+<!--l. 412--><p class="nopar" >
+We would want the equation to be independent of <span 
+class="cmmi-10">v</span>, but we still have to be dependent on it since we
+have <span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">v,s</span></sub>. This means we need to rewrite it using <span 
+class="cmmi-10">i </span>and <span 
+class="cmmi-10">k </span>= <span 
+class="cmmi-10">v </span>+ <span 
+class="cmmi-10">s</span>.
+</p><!--l. 415--><p class="indent" >   For <span 
+class="cmmi-10">i </span>= 1<span 
+class="cmmi-10">,</span>2<span 
+class="cmmi-10">,</span><img 
+src="MTP69x.png" alt="⋅⋅⋅"  class="@cdots"  /><span style="margin-left:0.3em" class="thinspace"></span><span 
+class="cmmi-10">,m</span><sub><span 
+class="cmr-7">0</span></sub>, let <span 
+class="cmbx-10">P</span><sup><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sup> be the vector of <span 
+class="cmmi-10">m </span><span 
+class="cmsy-10">− </span>1 p-values excluding <span 
+class="cmmi-10">P</span><sub><span 
+class="cmmi-7">i</span></sub>. Then, we let <span 
+class="cmmi-10">C</span><sub><span 
+class="cmmi-7">v,s</span></sub><sup><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sup> be
+the event in which if <span 
+class="cmmi-10">P</span><sub><span 
+class="cmmi-7">i</span></sub> is rejected then <span 
+class="cmmi-10">v </span><span 
+class="cmsy-10">− </span>1 true null hypotheses and <span 
+class="cmmi-10">s </span>false null hypotheses are
+rejected alongside with it. Thus, we have the equality
+</p>
+   <table 
+class="equation-star"><tr><td>
+                     <span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">P</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">q</span><sub><span 
+class="cmmi-7">v</span><span 
+class="cmr-7">+</span><span 
+class="cmmi-7">s</span></sub><span 
+class="cmsy-10">}∩ </span><span 
+class="cmmi-10">A</span><sub><span 
+class="cmmi-7">v,s</span></sub> = <span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">P</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">q</span><sub><span 
+class="cmmi-7">v</span><span 
+class="cmr-7">+</span><span 
+class="cmmi-7">s</span></sub><span 
+class="cmsy-10">}∩ </span><span 
+class="cmmi-10">C</span><sub><span 
+class="cmmi-7">v,s</span></sub><sup><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sup><span 
+class="cmmi-10">.</span>
+</td></tr></table>
+<!--l. 417--><p class="nopar" >
+We then denote <span 
+class="cmmi-10">C</span><sub><span 
+class="cmmi-7">k</span></sub><sup><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sup> = <span 
+class="msam-10">⋓</span><sub><span 
+class="cmmi-7">j</span><span 
+class="cmsy-7">≤</span><span 
+class="cmmi-7">k</span></sub><span 
+class="cmmi-10">C</span><sub><span 
+class="cmmi-7">v,s</span></sub><sup><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sup>. For each <span 
+class="cmmi-10">i</span>, <span 
+class="cmmi-10">C</span><sub><span 
+class="cmmi-7">k</span></sub><sup><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sup> are disjoint, so we can rewrite the FDR
+as
+</p>
+   <table 
+class="equation-star"><tr><td>
+                                                                                
+
+                                                                                
+   <center class="math-display" >
+<img 
+src="MTP70x.png" alt="       m∑0  m∑1 ∑m0  1
+FDR  =    (      -----ℙ({Pi ≤ qv+s}∩ Av,s))
+       i=1 s=0v=1v + s
+       m∑0 ∑m 1                (i)
+     =       k-ℙ({Pi ≤ qv+s}∩ Ck ),
+       i=1k=0
+" class="math-display"  /></center></td></tr></table>
+<!--l. 424--><p class="nopar" >
+which is what we want.
+</p><!--l. 427--><p class="indent" >   Now, we will try to use the PRDS property. Let <span 
+class="cmmi-10">D</span><sub><span 
+class="cmmi-7">k</span></sub><sup><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sup> = <span 
+class="cmsy-10">∪</span><sub><span 
+class="cmmi-7">j</span><span 
+class="cmsy-7">≤</span><span 
+class="cmmi-7">k</span></sub><span 
+class="cmmi-10">C</span><sub><span 
+class="cmmi-7">j</span></sub><sup><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sup> for <span 
+class="cmmi-10">k </span>= 1<span 
+class="cmmi-10">,</span>2<span 
+class="cmmi-10">,</span><img 
+src="MTP71x.png" alt="⋅⋅⋅"  class="@cdots"  /><span style="margin-left:0.3em" class="thinspace"></span><span 
+class="cmmi-10">,m</span>.
+Notice that <span 
+class="cmmi-10">D</span><sub><span 
+class="cmmi-7">m</span></sub><sup><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sup> is the entire space. It is easy to spot that <span 
+class="cmmi-10">D</span><sub><span 
+class="cmmi-7">k</span></sub><sup><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sup> are nondecreasing set.
+Using PRDS, for <span 
+class="cmmi-10">p </span><span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">p</span><span 
+class="cmsy-10">′</span>, we have <span 
+class="msbm-10">ℙ</span>(<span 
+class="cmmi-10">D</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">P</span><sub><span 
+class="cmmi-7">i</span></sub> = <span 
+class="cmmi-10">p</span>) <span 
+class="cmsy-10">≤ </span><span 
+class="msbm-10">ℙ</span>(<span 
+class="cmmi-10">D</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">P</span><sub><span 
+class="cmmi-7">i</span></sub> = <span 
+class="cmmi-10">p</span><span 
+class="cmsy-10">′</span>) for some nondecreasing
+set <span 
+class="cmmi-10">D</span>. We would also have, for <span 
+class="cmmi-10">j </span><span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">l </span>, <span 
+class="cmmi-10">q</span><sub><span 
+class="cmmi-7">j</span></sub> <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">q</span><sub><span 
+class="cmmi-7">l</span></sub> and <span 
+class="msbm-10">ℙ</span>(<span 
+class="cmmi-10">D</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">P</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">q</span><sub><span 
+class="cmmi-7">j</span></sub>) <span 
+class="cmsy-10">≤ </span><span 
+class="msbm-10">ℙ</span>(<span 
+class="cmmi-10">D</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">P</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">q</span><sub><span 
+class="cmmi-7">l</span></sub>). This
+means
+</p>
+   <table 
+class="equation-star"><tr><td>
+                     <img 
+src="MTP72x.png" alt="ℙ(D (i)∩ {Pi ≤ qk})
+----kℙ(P-≤-q-)----
+       i   k"  class="frac" align="middle" /> <span 
+class="cmsy-10">≤</span><img 
+src="MTP73x.png" alt="ℙ(D(i)∩ {Pi ≤ qk+1})
+---kℙ-(P--≤-q--)-----
+      i    k+1"  class="frac" align="middle" />
+</td></tr></table>
+<!--l. 429--><p class="nopar" >
+by the deﬁnition of conditional probability and setting <span 
+class="cmmi-10">j </span>= <span 
+class="cmmi-10">k</span>, <span 
+class="cmmi-10">l </span>= <span 
+class="cmmi-10">k </span>+ 1, and <span 
+class="cmmi-10">D </span>= <span 
+class="cmmi-10">D</span><sub><span 
+class="cmmi-7">k</span></sub><sup><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sup>.
+</p><!--l. 432--><p class="indent" >   Using the above inequality, we have
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="MTP74x.png" alt="ℙ(D(ki)∩{Pi-≤-qk})  ℙ(C(ki+)1-∩{Pi-≤-qk+1})-
+    ℙ(Pi ≤ qk)   +     ℙ(Pi ≤ qk+1)
+                       (i)                   (i)
+                 ≤ ℙ(D-k-∩-{Pi ≤-qk+1})+ ℙ(C-k+1-∩-{Pi-≤-qk+1})
+                       ℙ(Pi ≤ qk+1)         ℙ (Pi ≤ qk+1)
+                   ℙ(D (i) ∩ {Pi ≤ qk+1})
+                 = ----k+1-------------,
+                       ℙ (Pi ≤ qk+1 )
+" class="math-display"  /></center></td></tr></table>
+<!--l. 439--><p class="nopar" >
+since <span 
+class="cmmi-10">D</span><sub><span 
+class="cmmi-7">j</span><span 
+class="cmr-7">+1</span></sub><sup><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sup> = <span 
+class="cmmi-10">D</span><sub><span 
+class="cmmi-7">j</span></sub><sup><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sup> + <span 
+class="cmmi-10">C</span><sub><span 
+class="cmmi-7">j</span><span 
+class="cmr-7">+1</span></sub><sup><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sup> for all <span 
+class="cmmi-10">k </span><span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">m </span><span 
+class="cmsy-10">− </span>1. Notice that <span 
+class="cmmi-10">C</span><sub><span 
+class="cmr-7">1</span></sub><sup><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sup> = <span 
+class="cmmi-10">D</span><sub><span 
+class="cmr-7">1</span></sub><sup><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sup>, we repeat the above
+inequality for <span 
+class="cmmi-10">k </span>= 1<span 
+class="cmmi-10">,</span>2<span 
+class="cmmi-10">,</span><img 
+src="MTP75x.png" alt="⋅⋅⋅"  class="@cdots"  /><span style="margin-left:0.3em" class="thinspace"></span><span 
+class="cmmi-10">,m </span><span 
+class="cmsy-10">− </span>1 and get
+</p>
+   <table 
+class="equation-star"><tr><td>
+          <span 
+class="cmex-10">∑</span>
+             <sub><span 
+class="cmmi-7">k</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">m</span></sup><img 
+src="MTP76x.png" alt="ℙ(Ck(i)∩{Pi-≤-qk})
+    ℙ(Pi ≤ qk)"  class="frac" align="middle" /> <span 
+class="cmsy-10">≤</span><img 
+src="MTP77x.png" alt="ℙ(D-(im)∩-{Pi ≤-qk})
+    ℙ(Pi ≤ qk)"  class="frac" align="middle" /> = <img 
+src="MTP78x.png" alt="ℙ(Pi-≤-qk)
+ℙ(Pi ≤ qk)"  class="frac" align="middle" /> = 1<span 
+class="cmmi-10">,</span>
+</td></tr></table>
+<!--l. 442--><p class="nopar" >
+using the fact that <span 
+class="cmmi-10">D</span><sub><span 
+class="cmmi-7">m</span></sub><sup><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sup> is the entire space.
+</p><!--l. 445--><p class="noindent" >Thus,
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="MTP79x.png" alt="       m∑0 ∑m -1               (i)
+FDR  =       k ℙ({Pi ≤ qv+s}∩ Ck )
+       im=01k=m0                  (i)
+     ≤ ∑  ∑  -q ℙ({Pi-≤-qv+s}∩-Ck-)-
+       i=1k=0m      ℙ(Pi ≤ qk)
+                           kq         1       m   1  m      1   q     1
+      since ℙ(Pi ≤ qk) ≤ qk = =⇒  ---------≥ -- = --⋅-- =⇒  -≤  -----------
+          m                m      ℙ(Pi ≤ qk) kq   k   q     k   m ℙ(Pi ≤ qk)
+       -q ∑0 m∑  ℙ({Pi ≤-qv+s}∩-C(ki))
+     = m             ℙ(Pi ≤ qk)
+          i=m10 k=0
+     ≤ -q ∑  1 using the above inequality
+       m  i=1
+       -q       m0-
+     = m  ⋅m0 = m  q.
+" class="math-display"  /></center></td></tr></table>
+<!--l. 455--><p class="nopar" >
+The proof is completed.                                                                                             □
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 459--><p class="noindent" ><span class="head">
+<span 
+class="cmbx-10">Remark.</span>  </span>This proof can in fact be used to proof Theorem <a 
+href="#x1-13001r1">1<!--tex4ht:ref: thm:BH --></a>. Given that
+</p>
+   <table 
+class="equation-star"><tr><td>
+                  FDR = <span 
+class="cmex-10">∑</span>
+  <sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">m</span><sub><span 
+class="cmr-5">0</span></sub>
+     </sup> <span 
+class="cmex-10">∑</span>
+  <sub><span 
+class="cmmi-7">k</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">m</span></sup><img 
+src="MTP80x.png" alt="1-
+k"  class="frac" align="middle" /><span 
+class="msbm-10">ℙ</span>(<span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">P</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">q</span><sub><span 
+class="cmmi-7">v</span><span 
+class="cmr-7">+</span><span 
+class="cmmi-7">s</span></sub><span 
+class="cmsy-10">}∩ </span><span 
+class="cmmi-10">C</span><sub><span 
+class="cmmi-7">k</span></sub><sup><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sup>)<span 
+class="cmmi-10">,</span>
+</td></tr></table>
+<!--l. 463--><p class="nopar" >
+since the test statistics are independent for the BH procedure, we would have independent p-values and
+that means
+</p>
+   <table 
+class="equation-star"><tr><td>
+                                                                                
+
+                                                                                
+   <center class="math-display" >
+<img 
+src="MTP81x.png" alt="       m∑0 ∑m  1        k
+FDR  =        -ℙ({Pi ≤--q}∩ C (ik) )
+       i=1k=1 k       m
+       m∑0 ∑m  1        k      (i)
+     =        kℙ({Pi ≤ m-q})ℙ(Ck )
+       i=1k=1
+       m∑0 ∑m  1--k     (i)
+     =        k ⋅m qℙ(Ck )
+       im=1k=m1
+     = ∑ 0∑   qℙ (C (i))
+       i=1k=1 m    k
+       m∑0
+     =    -q ⋅1 = m0-q.
+       i=1m       m
+" class="math-display"  /></center></td></tr></table>
+<!--l. 473--><p class="nopar" >
+So, Theorem <a 
+href="#x1-13001r1">1<!--tex4ht:ref: thm:BH --></a> has been shown.
+</p>
+   </div>
+<!--l. 479--><p class="indent" >   We have shown that the control of FDR is at (<span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">0</span></sub><span 
+class="cmmi-10">∕m</span>)<span 
+class="cmmi-10">α </span>for most of the scenarios in practice. Notice
+that the coeﬃcient <span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">0</span></sub><span 
+class="cmmi-10">∕m </span>is occurring every single time, if we can have an estimate for <span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">0</span></sub> (we already
+know <span 
+class="cmmi-10">m</span>), we can have a better procedure. This is because, although the level is (<span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">0</span></sub><span 
+class="cmmi-10">∕m</span>)<span 
+class="cmmi-10">α</span>, since we do
+not know <span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">0</span></sub> we have to set the level at <span 
+class="cmmi-10">α </span>which could be too conservative sometimes.
+If we can estimate <span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">0</span></sub>, we can control the FDR at <span 
+class="cmmi-10">α </span>exactly. Many research have been
+done in order to estimate <span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">0</span></sub>, and we will be talking about some of those work in the next
+chapter.
+<a 
+ id="x1-14002r16"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">3.4   </span> <a 
+ id="x1-150004"></a>Alternative Proof for Theorem 1 &#x0026; 2</h3>
+<!--l. 483--><p class="noindent" >The following proofs for the BH procedure control and the version with weaker dependency condition
+are provided by E. Candés and R. Foygel Barber.
+</p><!--l. 485--><p class="indent" >   We want to prove the FDR control at <span 
+class="cmmi-10">α</span>, or FDR <span 
+class="cmsy-10">≤ </span>(<span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">0</span></sub><span 
+class="cmmi-10">∕m</span>)<span 
+class="cmmi-10">α </span><span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">α </span>where the equality of FDR holds
+for independent and continuous test statistics. Earlier on, we deﬁne FDR to be FDR = <span 
+class="msbm-10">𝔼</span>[<span 
+class="cmmi-10">V∕R</span>]and
+<span 
+class="cmmi-10">V∕R </span>= 0 when <span 
+class="cmmi-10">R </span>= 0. Here, we will use an alternative deﬁnition. We deﬁne the value false discovery
+proportion, or FDP, to be
+</p>
+   <table 
+class="equation-star"><tr><td>
+                                                                                
+
+                                                                                
+   <center class="math-display" >
+<img 
+src="MTP82x.png" alt="              {
+FDP = --V-- =  V ∕R  if R ≥ 1
+      R ∨ 1    0     otherwise.
+" class="math-display"  /></center></td></tr></table>
+<!--l. 492--><p class="nopar" >
+Here, <span 
+class="cmmi-10">A </span><span 
+class="cmsy-10">∨ </span><span 
+class="cmmi-10">B </span>= max(<span 
+class="cmmi-10">A,B</span>). With FDP, we would have
+</p>
+   <table 
+class="equation-star"><tr><td>
+                                 FDR = <span 
+class="msbm-10">𝔼</span>[FDP]
+</td></tr></table>
+<!--l. 495--><p class="nopar" >
+and this is clearly equivalent to the previous deﬁnition. Now, to show the proof, we will rewrite FDP in
+the form of
+</p>
+   <table 
+class="equation-star"><tr><td>
+                               FDP = <span 
+class="cmex-10">∑</span>
+   <sub><span 
+class="cmmi-7">i</span><span 
+class="cmsy-7">∈</span><span 
+class="cmmi-7">H</span><sub><span 
+class="cmr-5">0</span></sub></sub><img 
+src="MTP83x.png" alt="--Vi-
+R ∨ 1"  class="frac" align="middle" />
+</td></tr></table>
+<!--l. 498--><p class="nopar" >
+where <span 
+class="cmmi-10">i </span><span 
+class="cmsy-10">∈ </span><span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">0</span></sub> is the set of index corresponding to true null hypotheses with size <span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">0</span></sub>, and
+<span 
+class="cmmi-10">V</span> <sub><span 
+class="cmmi-7">i</span></sub> = <span 
+class="cmbx-10">1</span><span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">H</span><sub><span 
+class="cmmi-7">i</span></sub> is rejected<span 
+class="cmsy-10">}</span>. We then see that if we claim <span 
+class="msbm-10">𝔼</span>[<span 
+class="cmmi-10">V</span> <sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmmi-10">∕</span>(<span 
+class="cmmi-10">R </span><span 
+class="cmsy-10">∨ </span>1)] = <span 
+class="cmmi-10">α∕m</span>
+</p>
+                                                                                
+
+                                                                                
+   <table 
+class="equation-star"><tr><td>
+        FDR = <span 
+class="msbm-10">𝔼</span>[FDP] = <span 
+class="msbm-10">𝔼</span>[<span 
+class="cmex-10">∑</span>
+  <sub><span 
+class="cmmi-7">i</span><span 
+class="cmsy-7">∈</span><span 
+class="cmmi-7">H</span><sub><span 
+class="cmr-5">0</span></sub></sub><img 
+src="MTP84x.png" alt="  V
+---i-
+R ∨ 1"  class="frac" align="middle" />] = <span 
+class="cmex-10">∑</span>
+   <sub><span 
+class="cmmi-7">i</span><span 
+class="cmsy-7">∈</span><span 
+class="cmmi-7">H</span><sub><span 
+class="cmr-5">0</span></sub></sub><span 
+class="msbm-10">𝔼</span>[<img 
+src="MTP85x.png" alt=" V
+--i--
+R ∨1"  class="frac" align="middle" />] = <span 
+class="cmex-10">∑</span>
+   <sub><span 
+class="cmmi-7">i</span><span 
+class="cmsy-7">∈</span><span 
+class="cmmi-7">H</span><sub><span 
+class="cmr-5">0</span></sub></sub><img 
+src="MTP86x.png" alt="α
+--
+m"  class="frac" align="middle" /> = <img 
+src="MTP87x.png" alt="m
+--0
+ m"  class="frac" align="middle" /><span 
+class="cmmi-10">α</span>
+</td></tr></table>
+<!--l. 501--><p class="nopar" >
+This means, to prove the FDR control, we just need to show that <span 
+class="msbm-10">𝔼</span>[<span 
+class="cmmi-10">V</span> <sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmmi-10">∕</span>(<span 
+class="cmmi-10">R </span><span 
+class="cmsy-10">∨ </span>1)] = <span 
+class="cmmi-10">α∕m </span>for the
+independent case or <span 
+class="msbm-10">𝔼</span>[<span 
+class="cmmi-10">V</span> <sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmmi-10">∕</span>(<span 
+class="cmmi-10">R </span><span 
+class="cmsy-10">∨ </span>1)] <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">α∕m </span>for the PRDS case.
+</p><!--l. 504--><p class="indent" >
+</p>
+   <div class="proof">
+<!--l. 504--><p class="indent" >   <span class="head">
+<span 
+class="cmti-10">Proof.</span> </span>(Theorem <a 
+href="#x1-13001r1">1<!--tex4ht:ref: thm:BH --></a>)
+</p><!--l. 506--><p class="noindent" >To prove Theorem <a 
+href="#x1-13001r1">1<!--tex4ht:ref: thm:BH --></a>, we only need to prove the claim <span 
+class="msbm-10">𝔼</span>[<span 
+class="cmmi-10">V</span> <sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmmi-10">∕</span>(<span 
+class="cmmi-10">R </span><span 
+class="cmsy-10">∨ </span>1)] = <span 
+class="cmmi-10">α∕m</span>. Now, we will
+have
+</p>
+   <table 
+class="equation-star"><tr><td>
+                           <img 
+src="MTP88x.png" alt="--Vi-
+R ∨ 1"  class="frac" align="middle" /> = <span 
+class="cmex-10">∑</span>
+  <sub><span 
+class="cmmi-7">k</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">m</span></sup><img 
+src="MTP89x.png" alt="Vi1{R-=-k}
+     k"  class="frac" align="middle" /><span 
+class="cmmi-10">.</span>
+</td></tr></table>
+<!--l. 508--><p class="nopar" >
+Also, based on the BH procedure, we have two observations. Firstly, when there are <span 
+class="cmmi-10">k </span>rejections,
+some <span 
+class="cmmi-10">H</span><sub><span 
+class="cmmi-7">i</span></sub> will be rejected if and only if <span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">≤ </span>(<span 
+class="cmmi-10">k∕m</span>)<span 
+class="cmmi-10">α</span>. So, we have <span 
+class="cmmi-10">V</span> <sub><span 
+class="cmmi-7">i</span></sub> = <span 
+class="cmbx-10">1</span><span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">H</span><sub><span 
+class="cmmi-7">i</span></sub> is rejected<span 
+class="cmsy-10">} </span>= <span 
+class="cmbx-10">1</span><span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">≤</span>
+(<span 
+class="cmmi-10">k∕m</span>)<span 
+class="cmmi-10">α</span><span 
+class="cmsy-10">}</span>. Secondly, if we reject some <span 
+class="cmmi-10">H</span><sub><span 
+class="cmmi-7">i</span></sub>, or we have <span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">≤ </span>(<span 
+class="cmmi-10">k∕m</span>)<span 
+class="cmmi-10">α</span>, let us take <span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">i</span></sub> and set its value
+to 0, and denote the new number of rejection by <span 
+class="cmmi-10">R</span>(<span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">→ </span>0). This new number is exactly the
+same as R. If we reject <span 
+class="cmmi-10">H</span><sub><span 
+class="cmmi-7">i</span></sub>, since the rejection of hypotheses only take out the <span 
+class="cmmi-10">k </span>hypotheses and
+this change of <span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">i</span></sub> is not aﬀecting the hypotheses we are taking. If we do not reject <span 
+class="cmmi-10">H</span><sub><span 
+class="cmmi-7">i</span></sub>, <span 
+class="cmmi-10">V</span> <sub><span 
+class="cmmi-7">i</span></sub> will be
+0 so the value of <span 
+class="cmmi-10">R </span>would not matter. Thus, we would have <span 
+class="cmmi-10">V</span> <sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmbx-10">1</span><span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">R </span>= <span 
+class="cmmi-10">k</span><span 
+class="cmsy-10">} </span>= <span 
+class="cmmi-10">V</span> <sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmbx-10">1</span><span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">R</span>(<span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">→ </span>0) = <span 
+class="cmmi-10">k</span><span 
+class="cmsy-10">}</span>.
+                                                                                
+
+                                                                                
+</p><!--l. 511--><p class="indent" >   Combining the observations and taking the expectation conditional on all p-values except for <span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">i</span></sub>, i.e.
+<span 
+class="cmsy-10">ℱ</span><sub><span 
+class="cmmi-7">i</span></sub> = <span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">p</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,</span><img 
+src="MTP90x.png" alt="⋅⋅⋅"  class="@cdots"  /><span style="margin-left:0.3em" class="thinspace"></span><span 
+class="cmmi-10">,p</span><sub><span 
+class="cmmi-7">k</span><span 
+class="cmsy-7">−</span><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,p</span><sub><span 
+class="cmmi-7">k</span><span 
+class="cmr-7">+1</span></sub><span 
+class="cmmi-10">,</span><img 
+src="MTP91x.png" alt="⋅⋅⋅"  class="@cdots"  /><span style="margin-left:0.3em" class="thinspace"></span><span 
+class="cmmi-10">,p</span><sub><span 
+class="cmmi-7">m</span></sub><span 
+class="cmsy-10">}</span>, we have
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="MTP92x.png" alt="  -Vi--     ∑m 𝔼-[Vi1{R-=-k}|ℱi]
+𝔼[R∨ 1|ℱi] =          k
+            k=m1
+          = ∑  𝔼-[1{Hi-is-rejected}1{R-(pi →-0) =-k}|ℱi]
+            k=1                 k
+            ∑m
+          =    (k∕m-)α-⋅1{R-(pi →-0) =-k}
+            k=1           k
+" class="math-display"  /></center></td></tr></table>
+<!--l. 518--><p class="nopar" >
+where the last equality holds due to the face that <span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">∼ </span>Uniform(0,1) under true null hypotheses and
+they are independent. Also, given <span 
+class="cmsy-10">ℱ</span><sub><span 
+class="cmmi-7">i</span></sub> and <span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">i</span></sub> = 0, <span 
+class="cmbx-10">1</span><span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">R</span>(<span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">→ </span>0) = <span 
+class="cmmi-10">k</span><span 
+class="cmsy-10">} </span>is deterministic. This also means
+<span 
+class="cmex-10">∑</span>
+  <sub><span 
+class="cmmi-7">k</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">m</span></sup><span 
+class="cmbx-10">1</span><span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">R</span>(<span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">→ </span>0) = <span 
+class="cmmi-10">k</span><span 
+class="cmsy-10">} </span>= 1. This is because by setting <span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">i</span></sub> = 0, we will have at least one rejection and
+<span 
+class="cmmi-10">R</span>(<span 
+class="cmmi-10">P</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">→ </span>0) <span 
+class="cmsy-10">≥ </span>1. Also, since <span 
+class="cmmi-10">R</span>(<span 
+class="cmmi-10">P</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">→ </span>0) is deterministic and ﬁxed, it will be one of the values from 1 to
+<span 
+class="cmmi-10">m</span>. So, we have
+</p>
+   <table 
+class="equation-star"><tr><td>
+                    <span 
+class="msbm-10">𝔼</span>[<img 
+src="MTP93x.png" alt=" Vi
+R∨-1-"  class="frac" align="middle" /><span 
+class="cmsy-10">|ℱ</span><sub><span 
+class="cmmi-7">i</span></sub>] = <img 
+src="MTP94x.png" alt=" α
+m-"  class="frac" align="middle" /><span 
+class="cmex-10">∑</span>
+    <sub><span 
+class="cmmi-7">k</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">m</span></sup><span 
+class="cmbx-10">1</span><span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">R</span>(<span 
+class="cmmi-10">p</span><sub>
+<span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">→ </span>0)<span 
+class="cmsy-10">} </span>= <img 
+src="MTP95x.png" alt="α
+m-"  class="frac" align="middle" /><span 
+class="cmmi-10">.</span>
+</td></tr></table>
+<!--l. 521--><p class="nopar" >
+Using the tower property <span 
+class="msbm-10">𝔼</span>[<span 
+class="cmmi-10">X</span>] = <span 
+class="msbm-10">𝔼</span>[<span 
+class="msbm-10">𝔼</span>[<span 
+class="cmmi-10">X</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">Y </span>]] for two random variables <span 
+class="cmmi-10">X </span>and <span 
+class="cmmi-10">Y </span>, we can conclude that
+<span 
+class="msbm-10">𝔼</span>[<span 
+class="cmmi-10">V</span> <sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmmi-10">∕</span>(<span 
+class="cmmi-10">R </span><span 
+class="cmsy-10">∨ </span>1)] = <span 
+class="msbm-10">𝔼</span>[<span 
+class="msbm-10">𝔼</span>[<span 
+class="cmmi-10">V</span> <sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmmi-10">∕</span>(<span 
+class="cmmi-10">R </span><span 
+class="cmsy-10">∨ </span>1)]<span 
+class="cmsy-10">|ℱ</span><sub><span 
+class="cmmi-7">i</span></sub>] = <span 
+class="msbm-10">𝔼</span>[<span 
+class="cmmi-10">α∕m</span>] = <span 
+class="cmmi-10">α∕m</span>.                                                   □
+</p>
+                                                                                
+
+                                                                                
+   </div>
+<!--l. 525--><p class="noindent" >From the above proof, we only use the independence between the true null hypotheses, and the
+dependency between the false ones are not important to the proof. This means, assuming
+all test statistics being independent may be too strong of a condition, and we certainly
+should weaken it. With that, we have Theorem <a 
+href="#x1-14001r2">2<!--tex4ht:ref: thm-BY --></a> that only assumes PRDS on the true
+nulls.
+</p><!--l. 527--><p class="indent" >
+</p>
+   <div class="proof">
+<!--l. 527--><p class="indent" >   <span class="head">
+<span 
+class="cmti-10">Proof.</span> </span>(Theorem <a 
+href="#x1-14001r2">2<!--tex4ht:ref: thm-BY --></a>)
+</p><!--l. 529--><p class="noindent" >As mentioned earlier, to prove Theorem <a 
+href="#x1-14001r2">2<!--tex4ht:ref: thm-BY --></a>, we only need to prove the claim <span 
+class="msbm-10">𝔼</span>[<span 
+class="cmmi-10">V</span> <sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmmi-10">∕</span>(<span 
+class="cmmi-10">R</span><span 
+class="cmsy-10">∨ </span>1)] <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">α∕m </span>under
+PRDS on true null hypotheses. We have the same setting as the previous proof. Then, we set
+<span 
+class="cmmi-10">q</span><sub><span 
+class="cmmi-7">k</span></sub> = <span 
+class="cmmi-10">k∕m </span><span 
+class="cmsy-10">⋅ </span><span 
+class="cmmi-10">α </span>and have
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="MTP96x.png" alt="--Vi-   m∑  1{pi ≤-qk}1{R-=-k}
+R ∨ 1 =            k
+        km=1
+      = ∑  1{pi ≤-qk}(1{R-≤-k}−-1{R-≤-k-−-1})
+        k=1                k
+        m∑                      m∑
+      =    1{pi ≤-qk}1{R-≤-k} −   1{pi ≤-qk}1{R-≤-k−-1}
+        k=1        k           k=1           k
+        m∑                      m∑−1
+      =    1{pi ≤-qk}1{R-≤-k} −   1-{pi-≤-qk+1}1{R-≤-k}
+        k=1        k           k=0        k+ 1
+        1{p ≤ q }1 {R ≤ m }   m∑−11 {p ≤ q}1 {R ≤ k }  m∑− 11{p ≤ q   }1{R ≤ k}
+      = ---i---m-----------+    ---i----k-------- −     ---i---k+1---------
+                m            k=1        k           k=1        k + 1
+        1{pi ≤ qm}1 {R ≤ m }  m∑−1 1{pi ≤ qk}  1{pi ≤ qk+1}
+      = --------m----------+    [----k---- − ---k+-1----]1{R ≤ k}.
+                             k=1
+" class="math-display"  /></center></td></tr></table>
+<!--l. 539--><p class="nopar" >
+Notice that
+</p>
+   <table 
+class="equation-star"><tr><td>
+                                                                                
+
+                                                                                
+                           <span 
+class="msbm-10">𝔼</span>[<img 
+src="MTP97x.png" alt="1{pi ≤-qm-}1-{R-≤-m}
+        m"  class="frac" align="middle" />] = <img 
+src="MTP98x.png" alt="α-
+m"  class="frac" align="middle" /><span 
+class="cmmi-10">,</span>
+</td></tr></table>
+<!--l. 542--><p class="nopar" >
+since <span 
+class="cmmi-10">R </span><span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">m </span>is always true and <span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">i</span></sub> follows Uniform(0,1) under true null. So, if we can show
+that
+</p>
+   <table 
+class="equation-star"><tr><td>
+               <span 
+class="msbm-10">𝔼</span>[<span 
+class="cmex-10">∑</span>
+  <sub><span 
+class="cmmi-7">k</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmmi-7">m</span><span 
+class="cmsy-7">−</span><span 
+class="cmr-7">1</span></sup><span class="bbig"><img 
+src="MTP99x.png" alt="["  class="left" align="middle" /></span><img 
+src="MTP100x.png" alt="1{pi ≤ qk}
+----k----"  class="frac" align="middle" /> <span 
+class="cmsy-10">−</span><img 
+src="MTP101x.png" alt="1{pi ≤ qk+1}
+---k-+1----"  class="frac" align="middle" /><span class="bbig"><img 
+src="MTP102x.png" alt="]"  class="left" align="middle" /></span><span 
+class="cmbx-10">1</span><span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">R </span><span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">k</span><span 
+class="cmsy-10">}</span>] <span 
+class="cmsy-10">≤ </span>0<span 
+class="cmmi-10">,</span>
+</td></tr></table>
+<!--l. 545--><p class="nopar" >
+our claim will be proved. Now, for each <span 
+class="cmmi-10">k</span>, we have
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="MTP103x.png" alt="𝔼[[1{pi ≤-qk}− 1{pi-≤-qk+1}]1{R ≤ k}]
+       k          k+ 1
+     ℙ(pi ≤-qk,R-≤-k) ℙ-(pi ≤-qk+1,R-≤-k)
+   =        k       −       k + 1
+     ℙ(R-≤-k|pi ≤-qk)ℙ(pi ≤-qk) ℙ(R-≤-k|pi ≤-qk+1)ℙ(pi ≤-qk+1)
+   =            k            −            k+ 1
+     ℙ(R ≤ k|pi ≤ qk+1 )ℙ(pi ≤ qk) ℙ(R ≤ k |pi ≤ qk+1)ℙ(pi ≤ qk+1)
+   ≤ ------------k------------−  -----------k+-1------------ by PRDS
+                      ℙ(p ≤ q )  ℙ(p ≤ q   )
+   = ℙ(R ≤ k|pi ≤ qk+1)[---i---k-− ---i---k+1-]
+                          k         k + 1
+   = ℙ(R ≤ k|pi ≤ qk+1)[kα-⋅ 1-− (k-+-1)α⋅-1--]
+                      m   k     m      k+ 1
+   = 0.
+" class="math-display"  /></center></td></tr></table>
+<!--l. 557--><p class="nopar" >
+For the inequality, we used the PRDS property and said that
+</p>
+   <table 
+class="equation-star"><tr><td>
+                       <span 
+class="msbm-10">ℙ</span>(<span 
+class="cmmi-10">R </span><span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">k</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">q</span><sub><span 
+class="cmmi-7">k</span></sub>) <span 
+class="cmsy-10">≤ </span><span 
+class="msbm-10">ℙ</span>(<span 
+class="cmmi-10">R </span><span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">k</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">q</span><sub><span 
+class="cmmi-7">k</span><span 
+class="cmr-7">+1</span></sub>)<span 
+class="cmmi-10">.</span>
+</td></tr></table>
+<!--l. 560--><p class="nopar" >
+By deﬁnition of PRDS, for any increasing set <span 
+class="cmmi-10">D </span>and each <span 
+class="cmmi-10">i </span><span 
+class="cmsy-10">∈ </span><span 
+class="cmmi-10">I</span><sub><span 
+class="cmr-7">0</span></sub> <span 
+class="cmsy-10">⊂ </span><span 
+class="cmmi-10">I</span>, <span 
+class="cmmi-10">P</span>(<span 
+class="cmbx-10">X</span> <span 
+class="cmsy-10">∈ </span><span 
+class="cmmi-10">D</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">i</span></sub> = <span 
+class="cmmi-10">x</span>) is
+non-decreasing as <span 
+class="cmmi-10">x </span>increases. A consequence of this is that if we have <span 
+class="cmmi-10">x </span><span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">x</span><span 
+class="cmsy-10">′</span>, we would
+have
+</p>
+   <table 
+class="equation-star"><tr><td>
+                                                                                
+
+                                                                                
+                       <span 
+class="msbm-10">ℙ</span>(<span 
+class="cmbx-10">X</span> <span 
+class="cmsy-10">∈ </span><span 
+class="cmmi-10">D</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">x</span>) <span 
+class="cmsy-10">≤ </span><span 
+class="msbm-10">ℙ</span>(<span 
+class="cmbx-10">X</span> <span 
+class="cmsy-10">∈ </span><span 
+class="cmmi-10">D</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">X</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">x</span><span 
+class="cmsy-10">′</span>)<span 
+class="cmmi-10">.</span>
+</td></tr></table>
+<!--l. 563--><p class="nopar" >
+Notice that when <span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">i</span></sub> increases, we will have less rejections and make <span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">R </span><span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">k</span><span 
+class="cmsy-10">} </span>increases. So, <span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">R </span><span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">k</span><span 
+class="cmsy-10">} </span>is
+indeed an increasing set.                                                                                            □
+</p>
+   </div>
+                                                                                
+
+                                                                                
+   <h2 class="chapterHead"><span class="titlemark">Chapter 4</span><br /><a 
+ id="x1-160004"></a>FDR Control using Empirical Bayes</h2>
+<!--l. 569--><p class="noindent" >The following content are mostly adapted from the book “Large-Scale Inference” by Efron
+(2010).
+<a 
+ id="x1-16001r17"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">4.1   </span> <a 
+ id="x1-170001"></a>Bayesian Hypothesis Testing</h3>
+<!--l. 573--><p class="noindent" >In the Frequentist setting, or more speciﬁcally the Neyman-Pearson setting, we are making a decision
+between two hypothesis - null hypothesis <span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">0</span></sub> and alternative hypothesis <span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">1</span></sub>. In the Bayesian setting,
+things are similar but the result of the test is viewed as a random variable <span 
+class="cmmi-10">H</span>. If the null hypothesis is
+true, we will have <span 
+class="cmmi-10">H </span>= 0; and if the null hypothesis is false, we will have <span 
+class="cmmi-10">H </span>= 1. Their prior
+probabilities are <span 
+class="msbm-10">ℙ</span>(<span 
+class="cmmi-10">H </span>= 0) = <span 
+class="cmmi-10">π</span><sub><span 
+class="cmr-7">0</span></sub> and <span 
+class="msbm-10">ℙ</span>(<span 
+class="cmmi-10">H </span>= 1) = <span 
+class="cmmi-10">π</span><sub><span 
+class="cmr-7">1</span></sub> = 1 <span 
+class="cmsy-10">− </span><span 
+class="cmmi-10">π</span><sub><span 
+class="cmr-7">0</span></sub>.
+</p><!--l. 575--><p class="indent" >   The test statistics will be denoted as <span 
+class="cmmi-10">Z</span>, and it has diﬀerent distributions under true and false null
+hypothesis. When <span 
+class="cmmi-10">H </span>= 0, we have <span 
+class="cmmi-10">Z </span><span 
+class="cmsy-10">∼ </span><span 
+class="cmmi-10">f</span><sub><span 
+class="cmr-7">0</span></sub> with CDF <span 
+class="cmmi-10">F</span><sub><span 
+class="cmr-7">0</span></sub>. When <span 
+class="cmmi-10">H </span>= 1, we have <span 
+class="cmmi-10">Z </span><span 
+class="cmsy-10">∼ </span><span 
+class="cmmi-10">f</span><sub><span 
+class="cmr-7">1</span></sub> with CDF <span 
+class="cmmi-10">F</span><sub><span 
+class="cmr-7">1</span></sub>.
+Combining these two, we have a hierarchical model with <span 
+class="cmmi-10">H </span><span 
+class="cmsy-10">∼</span> Bernoulli(<span 
+class="cmmi-10">π</span><sub><span 
+class="cmr-7">1</span></sub>) and <span 
+class="cmmi-10">Z </span><span 
+class="cmsy-10">∼ </span><span 
+class="cmmi-10">F</span><sub><span 
+class="cmmi-7">H</span></sub>. So, the pdf of
+<span 
+class="cmmi-10">Z </span>is <span 
+class="msbm-10">ℙ</span>(<span 
+class="cmmi-10">Z </span>= <span 
+class="cmmi-10">z</span>) = <span 
+class="cmmi-10">f</span>(<span 
+class="cmmi-10">z</span>) = <span 
+class="cmmi-10">π</span><sub><span 
+class="cmr-7">0</span></sub><span 
+class="cmmi-10">f</span><sub><span 
+class="cmr-7">0</span></sub>(<span 
+class="cmmi-10">z</span>) + <span 
+class="cmmi-10">π</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">f</span><sub><span 
+class="cmr-7">1</span></sub>(<span 
+class="cmmi-10">z</span>).
+</p><!--l. 577--><p class="indent" >   Now, the probability of the null hypothesis being true or false will be updated once we have
+collected data. Assuming we observe a test statistics value <span 
+class="cmmi-10">Z </span>= <span 
+class="cmmi-10">z</span>, we would like to know the
+probabilities <span 
+class="msbm-10">ℙ</span>(<span 
+class="cmmi-10">H </span>= 0<span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">z</span>) and <span 
+class="msbm-10">ℙ</span>(<span 
+class="cmmi-10">H </span>= 1<span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">z</span>). If one is bigger than the other, we will know which hypothesis
+we should pick. To compute these two probabilities, we will use the Bayes rule. This gives
+us
+</p>
+   <table 
+class="equation-star"><tr><td>
+                   <span 
+class="msbm-10">ℙ</span>(<span 
+class="cmmi-10">H </span>= 0<span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">z</span>) = <img 
+src="MTP104x.png" alt="ℙ (z|H = 0)⋅ℙ(H = 0)
+------ℙ(Z-=-z)-----"  class="frac" align="middle" /> = <img 
+src="MTP105x.png" alt="π0 ⋅f0(z)
+--f(z)--"  class="frac" align="middle" />
+</td></tr></table>
+<!--l. 579--><p class="nopar" >
+and
+</p>
+   <table 
+class="equation-star"><tr><td>
+                                                                                
+
+                                                                                
+                   <span 
+class="msbm-10">ℙ</span>(<span 
+class="cmmi-10">H </span>= 1<span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">z</span>) = <img 
+src="MTP106x.png" alt="ℙ(z|H-=-1)⋅ℙ(H-=-1)
+      ℙ(Z = z)"  class="frac" align="middle" /> = <img 
+src="MTP107x.png" alt="π1 ⋅f1(z)
+  f(z)"  class="frac" align="middle" /><span 
+class="cmmi-10">.</span>
+</td></tr></table>
+<!--l. 582--><p class="nopar" >
+The comparison between <span 
+class="msbm-10">ℙ</span>(<span 
+class="cmmi-10">H </span>= 0<span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">z</span>) and <span 
+class="msbm-10">ℙ</span>(<span 
+class="cmmi-10">H </span>= 1<span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">z</span>), after some computations, is equivalent to the
+comparison between <span 
+class="cmmi-10">π</span><sub><span 
+class="cmr-7">0</span></sub> <span 
+class="cmsy-10">⋅ </span><span 
+class="cmmi-10">f</span><sub><span 
+class="cmr-7">0</span></sub>(<span 
+class="cmmi-10">z</span>) and <span 
+class="cmmi-10">π</span><sub><span 
+class="cmr-7">1</span></sub> <span 
+class="cmsy-10">⋅ </span><span 
+class="cmmi-10">f</span><sub><span 
+class="cmr-7">1</span></sub>(<span 
+class="cmmi-10">z</span>).
+</p><!--l. 585--><p class="indent" >   The ratio of these two probabilities has its own name, the <span 
+class="cmbx-10">Bayes factor</span>. Normally,
+we will put the probability for the null hypothesis at the denominator. There are certain
+existing thresholds for this factor for people to determine how strong the evidence is to choose
+a hypothesis, just like the frequently used 0.05 and 0.1 signiﬁcance level for Frequentist
+tests.
+<a 
+ id="x1-17001r19"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">4.2   </span> <a 
+ id="x1-180002"></a>Bayes FDR</h3>
+<!--l. 589--><p class="noindent" >The setting in the above section can be extended to the case where we are doing multiple
+hypothesis testing. The setting will be identical, and we will let the total number of tests be
+<span 
+class="cmmi-10">N</span>.
+</p><!--l. 591--><p class="indent" >   Now, for a subset <span 
+class="cmmi-10">A </span>of the real line, we deﬁne <span 
+class="cmmi-10">φ</span>(<span 
+class="cmmi-10">A</span>) = <span 
+class="msbm-10">ℙ</span>(<span 
+class="cmmi-10">H </span>= 0<span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">z </span><span 
+class="cmsy-10">∈ </span><span 
+class="cmmi-10">A</span>). Using Bayes rule, we
+have
+</p>
+   <table 
+class="equation-star"><tr><td>
+            <span 
+class="cmmi-10">φ</span>(<span 
+class="cmmi-10">A</span>) = <span 
+class="msbm-10">ℙ</span>(<span 
+class="cmmi-10">H </span>= 0<span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">z </span><span 
+class="cmsy-10">∈ </span><span 
+class="cmmi-10">A</span>) = <img 
+src="MTP108x.png" alt="ℙ-(H--=-0)⋅ℙ(z ∈-A|H-=-0)
+        ℙ(z ∈ A )"  class="frac" align="middle" /> = <img 
+src="MTP109x.png" alt="π0 ⋅F0(A)
+  F(A)"  class="frac" align="middle" />
+</td></tr></table>
+<!--l. 593--><p class="nopar" >
+where <span 
+class="cmmi-10">F</span><sub><span 
+class="cmr-7">0</span></sub>(<span 
+class="cmmi-10">A</span>) = <span 
+class="cmex-10">∫</span>
+  <sub><span 
+class="cmmi-7">A</span></sub><span 
+class="cmmi-10">f</span><sub><span 
+class="cmr-7">0</span></sub>(<span 
+class="cmmi-10">z</span>)<span 
+class="cmmi-10">dz </span>and <span 
+class="cmmi-10">F</span>(<span 
+class="cmmi-10">A</span>) = <span 
+class="cmex-10">∫</span>
+  <sub><span 
+class="cmmi-7">A</span></sub><span 
+class="cmmi-10">f</span>(<span 
+class="cmmi-10">z</span>)<span 
+class="cmmi-10">dz</span>.
+</p><!--l. 596--><p class="indent" >   If we set <span 
+class="cmmi-10">A </span>in such a way that <span 
+class="cmmi-10">z </span><span 
+class="cmsy-10">∈ </span><span 
+class="cmmi-10">A </span>means the null hypothesis if false, the above probability will be
+the probability of the null hypothesis actually being false given that we reject it, which is exactly what
+false discovery rate is about. Thus, the quantity <span 
+class="cmmi-10">φ</span>(<span 
+class="cmmi-10">A</span>) where <span 
+class="cmmi-10">z </span><span 
+class="cmsy-10">∈ </span><span 
+class="cmmi-10">A </span>means the null hypothesis if false is
+known as the <span 
+class="cmbx-10">Bayes false discovery rate</span>, or BFDR. For simplicity, we will also write <span 
+class="cmmi-10">φ</span>(<span 
+class="cmmi-10">A</span>) as
+Fdr(<span 
+class="cmmi-10">A</span>).
+</p><!--l. 598--><p class="indent" >   This quantity is a random variable and it involves <span 
+class="cmmi-10">π</span><sub><span 
+class="cmr-7">0</span></sub>, <span 
+class="cmmi-10">f</span><sub><span 
+class="cmr-7">0</span></sub>, and <span 
+class="cmmi-10">f</span><sub><span 
+class="cmr-7">1</span></sub>. Here, <span 
+class="cmmi-10">π</span><sub><span 
+class="cmr-7">0</span></sub> is almost
+known, and is usually near 1 in practice. Since we are normally calculating this quantity
+in the context of multiple testing like genetic research, we would only have a very small
+portion of false null hypothesis, making the ratio close to 1. The function <span 
+class="cmmi-10">f</span><sub><span 
+class="cmr-7">0</span></sub> is also known,
+since we would normally have z-values (or z-scores) as the test statistics, which follows a
+                                                                                
+
+                                                                                
+standard normal distribution N(0<span 
+class="cmmi-10">,</span>1). The remaining <span 
+class="cmmi-10">f</span><sub><span 
+class="cmr-7">1</span></sub> is unknown, and it is hard to ﬁnd
+out.
+</p><!--l. 600--><p class="indent" >   To deal with diﬃculties of this kind, people thought, since we have so many data available, why
+don’t we do an estimate of the distribution of <span 
+class="cmmi-10">f </span>as that is the only unknown? If we can estimate <span 
+class="cmmi-10">f</span>, we
+can estimate the target quantity. This idea of improving Bayesian inference with Frequentist
+estimations grows out to be a whole branch of thoughts known as the <span 
+class="cmbx-10">empirical Bayes</span>, with this
+name coined by its founder Herbert Robbins in Robbins (1956).
+</p><!--l. 602--><p class="indent" >   We let <span class='accentbar'><span 
+class="cmmi-10">F</span></span>(<span 
+class="cmmi-10">A</span>) be the empirical distribution of the <span 
+class="cmmi-10">N </span>z-values and deﬁne it to be
+</p>
+   <table 
+class="equation-star"><tr><td>
+                                <span class='accentbar'><span 
+class="cmmi-10">F</span></span>(<span 
+class="cmmi-10">A</span>) = <img 
+src="MTP110x.png" alt="# {z ∈ A}
+---------
+   N"  class="frac" align="middle" /><span 
+class="cmmi-10">,</span>
+</td></tr></table>
+<!--l. 604--><p class="nopar" >
+i.e. the proportion of the z-values that are being rejected. Now, substituting this value into Fdr, we
+get
+</p>
+   <table 
+class="equation-star"><tr><td>
+                            <span class="overline">Fdr</span>(<span 
+class="cmmi-10">A</span>) = <span class='accentbar'><span 
+class="cmmi-10">φ</span></span>(<span 
+class="cmmi-10">A</span>) = <img 
+src="MTP111x.png" alt="π0-⋅F0(A-)
+  F¯(A )"  class="frac" align="middle" /><span 
+class="cmmi-10">.</span>
+</td></tr></table>
+<!--l. 607--><p class="nopar" >
+For large values of <span 
+class="cmmi-10">N</span>, we would expect <span class='accentbar'><span 
+class="cmmi-10">F</span></span>(<span 
+class="cmmi-10">A</span>) to be a good estimation of <span 
+class="cmmi-10">F</span>(<span 
+class="cmmi-10">A</span>), and by extension
+<span class="overline">Fdr</span>(<span 
+class="cmmi-10">A</span>) being a good estimation of Fdr(<span 
+class="cmmi-10">A</span>).
+<a 
+ id="x1-18001r20"></a>
+</p>
+                                                                                
+
+                                                                                
+<h3 class="sectionHead"><span class="titlemark">4.3   </span> <a 
+ id="x1-190003"></a>BH Procedure using Empirical Bayes</h3>
+<!--l. 613--><p class="noindent" >Recall from earlier chapter that the BH procedure is a method that controls the FDR of
+the multiple testing. Now that we have Bayes FDR, can we rewrite BH procedure using
+that?
+</p><!--l. 615--><p class="indent" >   The BH procedure of <span 
+class="cmmi-10">n </span>hypothesis tests that controls the FDR at level <span 
+class="cmmi-10">α </span>will reject all the smallest
+<span 
+class="cmmi-10">k </span>p-values with
+</p>
+   <table 
+class="equation-star"><tr><td>
+                              <span 
+class="cmmi-10">k </span>= max<span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">i </span>: <span 
+class="cmmi-10">p</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sub> <span 
+class="cmsy-10">≤</span><img 
+src="MTP112x.png" alt="i
+n-"  class="frac" align="middle" /><span 
+class="cmmi-10">α</span><span 
+class="cmsy-10">}</span><span 
+class="cmmi-10">.</span>
+</td></tr></table>
+<!--l. 617--><p class="nopar" >
+We can map the p-values with z-values using
+</p>
+   <table 
+class="equation-star"><tr><td>
+                                   <span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">i</span></sub> = <span 
+class="cmmi-10">F</span><sub><span 
+class="cmr-7">0</span></sub>(<span 
+class="cmmi-10">z</span><sub><span 
+class="cmmi-7">i</span></sub>)
+</td></tr></table>
+<!--l. 620--><p class="nopar" >
+for <span 
+class="cmmi-10">F</span><sub><span 
+class="cmr-7">0</span></sub>(<span 
+class="cmsy-10">⋅</span>) being the cdf of Z when the null hypothesis is true, i.e. being N(0<span 
+class="cmmi-10">,</span>1). This means each <span 
+class="cmmi-10">p</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sub> will
+be mapped to <span 
+class="cmmi-10">F</span><sub><span 
+class="cmr-7">0</span></sub>(<span 
+class="cmmi-10">z</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sub>), and
+</p>
+   <table 
+class="equation-star"><tr><td>
+                                                                                
+
+                                                                                
+                            <img 
+src="MTP113x.png" alt="-i
+n"  class="frac" align="middle" /> = <img 
+src="MTP114x.png" alt="#{zj ≤-z(i)}
+    n"  class="frac" align="middle" /> = <span class='accentbar'><span 
+class="cmmi-10">F</span></span>(<span 
+class="cmmi-10">z</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sub>)<span 
+class="cmmi-10">.</span>
+</td></tr></table>
+<!--l. 623--><p class="nopar" >
+So, the BH procedure threshold can be transformed, and we have
+</p>
+   <table 
+class="equation-star"><tr><td>
+      <span 
+class="cmmi-10">p</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sub> <span 
+class="cmsy-10">≤</span><img 
+src="MTP115x.png" alt="i
+n-"  class="frac" align="middle" /><span 
+class="cmmi-10">α</span><img 
+src="MTP116x.png" alt="=⇒"  class="Longrightarrow"  /><img 
+src="MTP117x.png" alt="p(i)
+i∕N--"  class="frac" align="middle" /> <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">α</span><img 
+src="MTP118x.png" alt="= ⇒"  class="Longrightarrow"  /><img 
+src="MTP119x.png" alt="F0(z(i))
+¯------
+F(z(i))"  class="frac" align="middle" /> <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">α</span><img 
+src="MTP120x.png" alt="= ⇒"  class="Longrightarrow"  /><span class="overline">Fdr</span>(<span 
+class="cmmi-10">z</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sub>) = <span 
+class="cmmi-10">π</span><sub><span 
+class="cmr-7">0</span></sub> <span 
+class="cmsy-10">⋅</span><img 
+src="MTP121x.png" alt="F0(z(i))
+-¯-----
+F (z(i))"  class="frac" align="middle" /> <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">π</span><sub><span 
+class="cmr-7">0</span></sub><span 
+class="cmmi-10">α </span><span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">α.</span>
+</td></tr></table>
+<!--l. 626--><p class="nopar" >
+Thus, the BH procedure using empirical Bayes controlling FDR at will be rejecting all the <span 
+class="cmmi-10">k </span>hypothesis
+with <span 
+class="cmmi-10">k </span>being the largest value of index <span 
+class="cmmi-10">i </span>with <span class="overline">Fdr</span>(<span 
+class="cmmi-10">z</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sub>) <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">α</span>.
+</p><!--l. 629--><p class="indent" >   It is not straightforward to understand the rationale behind the BH procedure. Why is the critical
+line what it is? Why do we reject until the last crossing? It is all a bit mysterious and we can minimally
+justify BH procedure by simply stating and proving that it works. The empirical Bayes approach shows
+the power of thinking about multiple testing problems in a Bayesian framework. Using the
+Bayesian machinery, we are able to arrive at the BH procedure far more simply than by
+restricting ourselves to the Frequentist framework. We only need to compute the estimated
+Bayes FDR of each one of the tests and cut oﬀ at <span 
+class="cmmi-10">α </span>level. The procedure become easier to
+understand.
+<a 
+ id="x1-19001r21"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">4.4   </span> <a 
+ id="x1-200004"></a>Quality of Bayesian FDR estimator</h3>
+<!--l. 633--><p class="noindent" >The empirical Bayes BH procedure is phrased using <span class="overline">Fdr</span>, the Bayesian FDR estimator. How good is this
+estimator exactly? Is it good enough so that the procedure will yield satisfying results? In this section
+we will be exploring the quality of the estimator.
+                                                                                
+
+                                                                                
+</p><!--l. 635--><p class="indent" >   To ﬁnd out how good an estimator <span class="overline">Fdr(<span 
+class="cmmi-10">A</span>)</span> is, we need to adopt some notations. We let
+<span 
+class="cmmi-10">N</span><sub><span 
+class="cmr-7">0</span></sub>(<span 
+class="cmmi-10">A</span>) = #<span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">i </span>: <span 
+class="cmmi-10">z</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">∈ </span><span 
+class="cmmi-10">A</span> and being true null<span 
+class="cmsy-10">} </span>denote the number of true nulls being rejected, and
+<span 
+class="cmmi-10">e</span><sub><span 
+class="cmr-7">0</span></sub>(<span 
+class="cmmi-10">A</span>) = <span 
+class="msbm-10">𝔼</span>[<span 
+class="cmmi-10">N</span><sub><span 
+class="cmr-7">0</span></sub>(<span 
+class="cmmi-10">A</span>)] be its expectation. Furthermore, we let <span 
+class="cmmi-10">N</span><sub><span 
+class="cmr-7">1</span></sub>(<span 
+class="cmmi-10">A</span>) = #<span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">i </span>: <span 
+class="cmmi-10">z</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">∈ </span><span 
+class="cmmi-10">A</span> and being false null<span 
+class="cmsy-10">}</span>
+denote the number of false nulls being rejected, and <span 
+class="cmmi-10">e</span><sub><span 
+class="cmr-7">1</span></sub>(<span 
+class="cmmi-10">A</span>) = <span 
+class="msbm-10">𝔼</span>[<span 
+class="cmmi-10">N</span><sub><span 
+class="cmr-7">1</span></sub>(<span 
+class="cmmi-10">A</span>)] be its expectation. So, the total
+number of rejected hypothesis will be <span 
+class="cmmi-10">N</span><sub><span 
+class="cmr-7">+</span></sub>(<span 
+class="cmmi-10">A</span>) = #<span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">i </span>: <span 
+class="cmmi-10">z</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">∈ </span><span 
+class="cmmi-10">A</span><span 
+class="cmsy-10">} </span>= <span 
+class="cmmi-10">N</span><sub><span 
+class="cmr-7">0</span></sub>(<span 
+class="cmmi-10">A</span>) + <span 
+class="cmmi-10">N</span><sub><span 
+class="cmr-7">1</span></sub>(<span 
+class="cmmi-10">A</span>), and its expectation is
+<span 
+class="cmmi-10">e</span><sub><span 
+class="cmr-7">+</span></sub>(<span 
+class="cmmi-10">A</span>) = <span 
+class="msbm-10">𝔼</span>[<span 
+class="cmmi-10">N</span><sub><span 
+class="cmr-7">+</span></sub>(<span 
+class="cmmi-10">A</span>)]. So, we would have
+</p>
+   <table 
+class="equation-star"><tr><td>
+                     <span class="overline">Fdr</span>(<span 
+class="cmmi-10">A</span>) = <img 
+src="MTP122x.png" alt="π ⋅F (A)
+-0¯-0----
+  F(A)"  class="frac" align="middle" /> = <img 
+src="MTP123x.png" alt="nπ ⋅F (A )
+--0¯--0---
+  nF(A )"  class="frac" align="middle" /> = <img 
+src="MTP124x.png" alt=" e (A )
+--0---
+N+ (A)"  class="frac" align="middle" />
+</td></tr></table>
+<!--l. 637--><p class="nopar" >
+and
+</p>
+   <table 
+class="equation-star"><tr><td>
+                                 Fdr(<span 
+class="cmmi-10">A</span>) = <img 
+src="MTP125x.png" alt="e0(A-)-
+e+ (A )"  class="frac" align="middle" /><span 
+class="cmmi-10">.</span>
+</td></tr></table>
+<!--l. 640--><p class="nopar" >
+In addition, we will need another quantity, the false discovery proportion. The false discovery portion,
+Fdp, is deﬁned to be
+</p>
+   <table 
+class="equation-star"><tr><td>
+                                                                                
+
+                                                                                
+                                Fdp(<span 
+class="cmmi-10">A</span>) = <img 
+src="MTP126x.png" alt="N0(A)-
+N+(A )"  class="frac" align="middle" />
+</td></tr></table>
+<!--l. 643--><p class="nopar" >
+and this is the same quantity as deﬁned in earlier chapter. So, we would also have Fdr(<span 
+class="cmmi-10">A</span>) = <span 
+class="msbm-10">𝔼</span>[Fdp(<span 
+class="cmmi-10">A</span>)].
+To discuss the relationships between the above mentioned quantities and illustrate how good <span class="overline">Fdr(<span 
+class="cmmi-10">A</span>)</span>,
+we will state without proof the following two lemmas.
+</p>
+   <div class="newtheorem">
+<!--l. 646--><p class="noindent" ><span class="head">
+<a 
+ id="x1-20001r2"></a>
+<span 
+class="cmbx-10">Lemma 2.</span>  </span>Suppose <span 
+class="cmmi-10">e</span><sub><span 
+class="cmr-7">0</span></sub>(<span 
+class="cmmi-10">A</span>) is the same as the conditional expectation of <span 
+class="cmmi-10">N</span><sub><span 
+class="cmr-7">0</span></sub>(<span 
+class="cmmi-10">A</span>) given <span 
+class="cmmi-10">N</span><sub><span 
+class="cmr-7">1</span></sub>(<span 
+class="cmmi-10">A</span>). Then the
+conditional expectation of <span class="overline">Fdr(<span 
+class="cmmi-10">A</span>)</span> and Fdp(<span 
+class="cmmi-10">A</span>) given <span 
+class="cmmi-10">N</span><sub><span 
+class="cmr-7">1</span></sub>(<span 
+class="cmmi-10">A</span>) satisfy
+</p>
+   <table 
+class="equation-star"><tr><td>
+                    <span 
+class="msbm-10">𝔼</span>[<span class="overline">Fdr(<span 
+class="cmmi-10">A</span>)</span><span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">N</span><sub><span 
+class="cmr-7">1</span></sub>(<span 
+class="cmmi-10">A</span>)] <span 
+class="cmsy-10">≥ </span><span 
+class="cmmi-10">φ</span><sub><span 
+class="cmr-7">1</span></sub>(<span 
+class="cmmi-10">A</span>) <span 
+class="cmsy-10">≥ </span><span 
+class="msbm-10">𝔼</span>[Fdp(<span 
+class="cmmi-10">A</span>)<span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">N</span><sub><span 
+class="cmr-7">1</span></sub>(<span 
+class="cmmi-10">A</span>)]
+</td></tr></table>
+<!--l. 649--><p class="nopar" >
+where
+</p>
+   <table 
+class="equation-star"><tr><td>
+                                                                                
+
+                                                                                
+                             <span 
+class="cmmi-10">φ</span><sub><span 
+class="cmr-7">1</span></sub>(<span 
+class="cmmi-10">A</span>) = <img 
+src="MTP127x.png" alt="----e0(A)----
+e0(A) +N1 (A)"  class="frac" align="middle" /><span 
+class="cmmi-10">.</span>
+</td></tr></table>
+<!--l. 652--><p class="nopar" >
+</p>
+   </div>
+<!--l. 655--><p class="indent" >   This lemma says that for every value of <span 
+class="cmmi-10">N</span><sub><span 
+class="cmr-7">1</span></sub>(<span 
+class="cmmi-10">A</span>), the conditional expectation of <span class="overline">Fdr(<span 
+class="cmmi-10">A</span>)</span> exceeds that
+of Fdp(<span 
+class="cmmi-10">A</span>), so that in the sense the empirical Bayes FDR is a conservatively biased estimate of
+the actual FDP. Taking expectation over <span 
+class="cmmi-10">N</span><sub><span 
+class="cmr-7">1</span></sub>(<span 
+class="cmmi-10">A</span>) and applying Jensen’s inequality shows
+that
+</p>
+   <table 
+class="equation-star"><tr><td>
+                           <span 
+class="cmmi-10">φ</span>(<span 
+class="cmmi-10">A</span>) <span 
+class="cmsy-10">≥ </span><span 
+class="msbm-10">𝔼</span>[Fdp(<span 
+class="cmmi-10">A</span>)] = FDR(<span 
+class="cmmi-10">A</span>)<span 
+class="cmmi-10">,</span>
+</td></tr></table>
+<!--l. 657--><p class="nopar" >
+so that the Bayes FDR is an upper bound of the traditional FDR.
+</p>
+   <div class="newtheorem">
+<!--l. 660--><p class="noindent" ><span class="head">
+<a 
+ id="x1-20002r3"></a>
+<span 
+class="cmbx-10">Lemma 3.</span>  </span>Let <span 
+class="cmmi-10">γ</span>(<span 
+class="cmmi-10">A</span>) indicate the squared coeﬃcient of variation of <span 
+class="cmmi-10">N</span><sub><span 
+class="cmr-7">+</span></sub>(<span 
+class="cmmi-10">A</span>),
+</p>
+   <table 
+class="equation-star"><tr><td>
+                                                                                
+
+                                                                                
+                               <span 
+class="cmmi-10">γ</span>(<span 
+class="cmmi-10">A</span>) = <img 
+src="MTP128x.png" alt="Var[N+-(A-)]
+  e+(A)2"  class="frac" align="middle" /><span 
+class="cmmi-10">.</span>
+</td></tr></table>
+<!--l. 663--><p class="nopar" >
+Then <span class="overline">Fdr(<span 
+class="cmmi-10">A</span>)</span><span 
+class="cmmi-10">∕φ</span>(<span 
+class="cmmi-10">A</span>) has approximate mean 1 + <span 
+class="cmmi-10">γ</span>(<span 
+class="cmmi-10">A</span>) and variance <span 
+class="cmmi-10">γ</span>(<span 
+class="cmmi-10">A</span>).
+</p>
+   </div>
+<!--l. 667--><p class="indent" >   This lemma quantiﬁes the obvious: the accuracy of <span class="overline">Fdr(<span 
+class="cmmi-10">A</span>)</span> as an estimate of the Bayes FDR
+depends on the variability of the denominator of <span 
+class="cmmi-10">N</span><sub><span 
+class="cmr-7">+</span></sub>(<span 
+class="cmmi-10">A</span>).
+                                                                                
+
+                                                                                
+</p>
+   <h2 class="chapterHead"><span class="titlemark">Chapter 5</span><br /><a 
+ id="x1-210005"></a>FDR Control using E-Values</h2>
+<!--l. 671--><p class="noindent" >The following content are mostly adapted from the paper by Wang and Ramdas (2020).
+<a 
+ id="x1-21001r22"></a>
+</p>
+<h3 class="sectionHead"><span class="titlemark">5.1   </span> <a 
+ id="x1-220001"></a>E-Variable and E-Value</h3>
+<!--l. 675--><p class="noindent" >As mentioned in earlier chapter, p-value is a random variable of the probability that the test statistics
+is at least as extreme under the assumption that the null hypothesis is true. This random
+variable is phrased in terms of probability of an event. Here, we proposed a diﬀerent random
+variable, the <span 
+class="cmbx-10">e-variable</span>, which can serve as either as an enhancement or as an alternative to
+p.
+</p><!--l. 677--><p class="indent" >   For data <span 
+class="cmmi-10">X </span>following distribution <span 
+class="cmmi-10">P </span>and null hypothesis <span 
+class="cmsy-10">ℋ</span><sub><span 
+class="cmr-7">0</span></sub>, the e-variable is a nonnegative random
+variable <span 
+class="cmmi-10">E </span>for testing null hypotheses <span 
+class="cmsy-10">ℋ</span><sub><span 
+class="cmr-7">0</span></sub> that is deﬁned by
+</p>
+   <table 
+class="equation-star"><tr><td>
+                              sup<sub><span 
+class="cmmi-7">P</span><sub><span 
+class="cmr-5">0</span></sub><span 
+class="cmsy-7">∈ℋ</span><sub><span 
+class="cmr-5">0</span></sub></sub><span 
+class="msbm-10">𝔼</span><sub><span 
+class="cmmi-7">P</span><sub><span 
+class="cmr-5">0</span></sub></sub><span 
+class="cmmi-10">E</span>(<span 
+class="cmmi-10">X</span>) <span 
+class="cmsy-10">≤ </span>1<span 
+class="cmmi-10">.</span>
+</td></tr></table>
+<!--l. 679--><p class="nopar" >
+Here, the realisations of e-variables are called e-values to avoid confusion between the random variable
+and its realisation like that of the p-value.
+</p><!--l. 682--><p class="indent" >   To illustrate its diﬀerence to p-value, let us deﬁne p-variable (the random variable version of
+p-value). A random variable <span 
+class="cmmi-10">P </span>is called a p-variable for testing <span 
+class="cmsy-10">ℋ</span><sub><span 
+class="cmr-7">0</span></sub> if
+</p>
+   <table 
+class="equation-star"><tr><td>
+                     sup<sub><span 
+class="cmmi-7">P</span><sub><span 
+class="cmr-5">0</span></sub><span 
+class="cmsy-7">∈ℋ</span><sub><span 
+class="cmr-5">0</span></sub></sub><span 
+class="msbm-10">ℙ</span><sub><span 
+class="cmmi-7">P</span><sub><span 
+class="cmr-5">0</span></sub></sub>(<span 
+class="cmmi-10">P</span>(<span 
+class="cmmi-10">X</span>) <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">α</span>) <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">α     </span><span 
+class="cmsy-10">∀</span><span 
+class="cmmi-10">α </span><span 
+class="cmsy-10">∈ </span>(0<span 
+class="cmmi-10">,</span>1)<span 
+class="cmmi-10">.</span>
+</td></tr></table>
+                                                                                
+
+                                                                                
+<!--l. 684--><p class="nopar" >
+We can see immediately that p-variables control the probability while e-variables control expectation.
+To relate the two concepts, we have the following theorem.
+</p>
+   <div class="newtheorem">
+<!--l. 687--><p class="noindent" ><span class="head">
+<a 
+ id="x1-22001r3"></a>
+<span 
+class="cmbx-10">Theorem 3.</span>  </span>Let <span 
+class="cmmi-10">E </span>be an e-variable. If <span 
+class="cmmi-10">P </span>= <span 
+class="cmmi-10">E</span><sup><span 
+class="cmsy-7">−</span><span 
+class="cmr-7">1</span></sup>, then <span 
+class="msbm-10">ℙ</span>(<span 
+class="cmmi-10">P </span><span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">α</span>) <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">α</span>.
+</p>
+   </div>
+<!--l. 691--><p class="indent" >
+</p>
+   <div class="proof">
+<!--l. 692--><p class="indent" >   <span class="head">
+<span 
+class="cmti-10">Proof.</span> </span>We ﬁx a <span 
+class="cmmi-10">P</span><sub><span 
+class="cmr-7">0</span></sub> <span 
+class="cmsy-10">∈ℋ</span><sub><span 
+class="cmr-7">0</span></sub>. Then, we have
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="MTP129x.png" alt="                1
+ℙP0(P ≤ α ) = ℙP0(-≤ α)
+                E   1
+          = ℙP0(E ≥ -)
+            𝔼  (E ) α
+          ≤ -P0---- using Markov ’s inequality
+              1∕α
+          = α𝔼P0(E ) ≤ α by the deﬁnition of E.
+" class="math-display"  /></center></td></tr></table>
+<!--l. 700--><p class="nopar" >
+                                                                               □
+</p>
+   </div>
+   <div class="newtheorem">
+<!--l. 703--><p class="noindent" ><span class="head">
+<span 
+class="cmbx-10">Remark.</span>  </span>This <span 
+class="cmmi-10">E</span><sup><span 
+class="cmsy-7">−</span><span 
+class="cmr-7">1</span></sup> is rather conservative, since the bound by Markov’s inequality may not be
+tight.
+                                                                                
+
+                                                                                
+</p>
+   </div>
+<a 
+ id="x1-22002r24"></a>
+<h3 class="sectionHead"><span class="titlemark">5.2   </span> <a 
+ id="x1-230002"></a>e-BH procedure</h3>
+<!--l. 709--><p class="noindent" >Earlier on, we have mentioned about the BH procedure, and it involves cutting oﬀ at the largest <span 
+class="cmmi-10">i </span>for
+which <span 
+class="cmmi-10">p</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sub> <span 
+class="cmsy-10">≤</span><img 
+src="MTP130x.png" alt="-i
+m"  class="frac" align="middle" /><span 
+class="cmmi-10">α</span>. Since we have already shown that we could replace <span 
+class="cmmi-10">P </span>with <span 
+class="cmmi-10">E</span><sup><span 
+class="cmsy-7">−</span><span 
+class="cmr-7">1</span></sup>, we could modify the
+BH procedure using <span 
+class="cmmi-10">E </span>instead of <span 
+class="cmmi-10">P</span>.
+</p><!--l. 711--><p class="indent" >   For each of the hypothesis <span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,H</span><sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmmi-10">,</span><img 
+src="MTP131x.png" alt="⋅⋅⋅"  class="@cdots"  /><span style="margin-left:0.3em" class="thinspace"></span><span 
+class="cmmi-10">,H</span><sub><span 
+class="cmmi-7">m</span></sub>, they have the e-values <span 
+class="cmmi-10">e</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,e</span><sub><span 
+class="cmr-7">2</span></sub><span 
+class="cmmi-10">,</span><img 
+src="MTP132x.png" alt="⋅⋅⋅"  class="@cdots"  /><span style="margin-left:0.3em" class="thinspace"></span><span 
+class="cmmi-10">,e</span><sub><span 
+class="cmmi-7">m</span></sub>. We will order
+them in descending order, and have them as <span 
+class="cmmi-10">e</span><sub><span 
+class="cmr-7">(1)</span></sub> <span 
+class="cmsy-10">≥ </span><span 
+class="cmmi-10">e</span><sub><span 
+class="cmr-7">(2)</span></sub> <span 
+class="cmsy-10">≥</span><img 
+src="MTP133x.png" alt="⋅⋅⋅"  class="@cdots"  /><span 
+class="cmsy-10">≥ </span><span 
+class="cmmi-10">e</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">m</span><span 
+class="cmr-7">)</span></sub>. We will reject all the hypotheses
+with the largest <span 
+class="cmmi-10">k </span>e-values where <span 
+class="cmmi-10">k </span>is the largest <span 
+class="cmmi-10">i </span>for which <img 
+src="MTP134x.png" alt="ie(i)
+ m"  class="frac" align="middle" /> <span 
+class="cmsy-10">≥</span><img 
+src="MTP135x.png" alt="1
+α"  class="frac" align="middle" />. This should not be a surprise.
+Since <span 
+class="cmmi-10">p</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sub> = 1<span 
+class="cmmi-10">∕e</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sub>, we have
+</p>
+   <table 
+class="equation-star"><tr><td>
+                <span 
+class="cmmi-10">p</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sub> <span 
+class="cmsy-10">≤</span><img 
+src="MTP136x.png" alt="i-
+m"  class="frac" align="middle" /><span 
+class="cmmi-10">α</span><img 
+src="MTP137x.png" alt="= ⇒"  class="Longrightarrow"  /><img 
+src="MTP138x.png" alt="-1-
+p(i)"  class="frac" align="middle" /> <span 
+class="cmsy-10">≥</span><img 
+src="MTP139x.png" alt="m-
+iα"  class="frac" align="middle" /><img 
+src="MTP140x.png" alt="=⇒"  class="Longrightarrow"  /><span 
+class="cmmi-10">e</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sub> <span 
+class="cmsy-10">≥</span><img 
+src="MTP141x.png" alt="m-
+i"  class="frac" align="middle" /> <span 
+class="cmsy-10">⋅</span><img 
+src="MTP142x.png" alt="1-
+α"  class="frac" align="middle" /><img 
+src="MTP143x.png" alt="=⇒"  class="Longrightarrow"  /><img 
+src="MTP144x.png" alt="i-
+m"  class="frac" align="middle" /><span 
+class="cmmi-10">e</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sub> <span 
+class="cmsy-10">≥</span><img 
+src="MTP145x.png" alt="1-
+α"  class="frac" align="middle" /><span 
+class="cmmi-10">.</span>
+</td></tr></table>
+<!--l. 713--><p class="nopar" >
+This modiﬁed version of BH procedure using e-values is known as the e-BH procedure. To make sure
+this procedure really works, we will prove its FDR control.
+</p>
+   <div class="newtheorem">
+<!--l. 716--><p class="noindent" ><span class="head">
+<a 
+ id="x1-23001r4"></a>
+<span 
+class="cmbx-10">Theorem 4.</span>  </span>The e-BH procedure has FDR at most <span 
+class="cmmi-10">m</span><sub><span 
+class="cmr-7">0</span></sub><span 
+class="cmmi-10">α∕m</span>.
+</p>
+   </div>
+<!--l. 719--><p class="indent" >
+</p>
+   <div class="proof">
+<!--l. 720--><p class="indent" >   <span class="head">
+<span 
+class="cmti-10">Proof.</span> </span>Recall from earlier, we have the deﬁnition
+</p>
+   <table 
+class="equation-star"><tr><td>
+                                                                                
+
+                                                                                
+                           FDP = <img 
+src="MTP146x.png" alt="-V---
+R ∨1"  class="frac" align="middle" /> = <span 
+class="cmex-10">∑</span>
+   <sub><span 
+class="cmmi-7">i</span><span 
+class="cmsy-7">∈</span><span 
+class="cmmi-7">H</span><sub><span 
+class="cmr-5">0</span></sub></sub><img 
+src="MTP147x.png" alt="--Vi-
+R ∨ 1"  class="frac" align="middle" />
+</td></tr></table>
+<!--l. 722--><p class="nopar" >
+where we sum over all the indices of true null hypotheses <span 
+class="cmmi-10">H</span><sub><span 
+class="cmr-7">0</span></sub>. Now, for any rejected <span 
+class="cmmi-10">i</span>, we will
+have
+</p>
+   <table 
+class="equation-star"><tr><td>
+                                 <img 
+src="MTP148x.png" alt="1-
+R"  class="frac" align="middle" /> <span 
+class="cmsy-10">≤</span><img 
+src="MTP149x.png" alt="1
+i"  class="frac" align="middle" /> <span 
+class="cmsy-10">≤</span><img 
+src="MTP150x.png" alt="-i
+m"  class="frac" align="middle" /><span 
+class="cmmi-10">e</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sub>
+</td></tr></table>
+<!--l. 725--><p class="nopar" >
+where the ﬁrst inequality is due to the fact that <span 
+class="cmmi-10">i </span><span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">R</span>. We will take the ﬁrst and last term of the
+inequality after multiplying <span 
+class="cmmi-10">V</span> <sub><span 
+class="cmmi-7">i</span></sub> and sum over all true null. This means, we have
+</p>
+   <table 
+class="equation-star"><tr><td>
+                       FDP = <span 
+class="cmex-10">∑</span>
+   <sub><span 
+class="cmmi-7">i</span><span 
+class="cmsy-7">∈</span><span 
+class="cmmi-7">H</span><sub><span 
+class="cmr-5">0</span></sub></sub><img 
+src="MTP151x.png" alt=" V
+---i-
+R ∨ 1"  class="frac" align="middle" /> <span 
+class="cmsy-10">≤</span><span 
+class="cmex-10">∑</span>
+   <sub><span 
+class="cmmi-7">i</span><span 
+class="cmsy-7">∈</span><span 
+class="cmmi-7">H</span><sub><span 
+class="cmr-5">0</span></sub></sub><img 
+src="MTP152x.png" alt="Viie(i)
+------
+  m"  class="frac" align="middle" />
+</td></tr></table>
+<!--l. 728--><p class="nopar" >
+and this gives us
+                                                                                
+
+                                                                                
+</p>
+   <table 
+class="equation-star"><tr><td>
+                FDP <span 
+class="cmsy-10">≤</span><span 
+class="cmex-10">∑</span>
+   <sub><span 
+class="cmmi-7">i</span><span 
+class="cmsy-7">∈</span><span 
+class="cmmi-7">H</span><sub><span 
+class="cmr-5">0</span></sub></sub><img 
+src="MTP153x.png" alt="V ie
+-i-(i)
+  m"  class="frac" align="middle" /> <span 
+class="cmsy-10">≤</span><span 
+class="cmex-10">∑</span>
+   <sub><span 
+class="cmmi-7">i</span><span 
+class="cmsy-7">∈</span><span 
+class="cmmi-7">H</span><sub><span 
+class="cmr-5">0</span></sub></sub><img 
+src="MTP154x.png" alt="ie
+--(i)
+ m"  class="frac" align="middle" /> <span 
+class="cmsy-10">≤</span><img 
+src="MTP155x.png" alt=" α
+--
+m"  class="frac" align="middle" /><span 
+class="cmex-10">∑</span>
+     <sub><span 
+class="cmmi-7">i</span><span 
+class="cmsy-7">∈</span><span 
+class="cmmi-7">H</span><sub><span 
+class="cmr-5">0</span></sub></sub><span 
+class="cmmi-10">e</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sub><span 
+class="cmmi-10">.</span>
+</td></tr></table>
+<!--l. 731--><p class="nopar" >
+Taking expectation of the above inequality, we have
+</p>
+   <table 
+class="equation-star"><tr><td>
+      FDR = <span 
+class="msbm-10">𝔼</span>[FDP] <span 
+class="cmsy-10">≤ </span><span 
+class="msbm-10">𝔼</span>[<img 
+src="MTP156x.png" alt="α
+--
+m"  class="frac" align="middle" /><span 
+class="cmex-10">∑</span>
+    <sub><span 
+class="cmmi-7">i</span><span 
+class="cmsy-7">∈</span><span 
+class="cmmi-7">H</span><sub><span 
+class="cmr-5">0</span></sub></sub><span 
+class="cmmi-10">e</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sub>] = <img 
+src="MTP157x.png" alt=" α
+--
+m"  class="frac" align="middle" /><span 
+class="cmex-10">∑</span>
+     <sub><span 
+class="cmmi-7">i</span><span 
+class="cmsy-7">∈</span><span 
+class="cmmi-7">H</span><sub><span 
+class="cmr-5">0</span></sub></sub><span 
+class="msbm-10">𝔼</span>[<span 
+class="cmmi-10">e</span><sub><span 
+class="cmr-7">(</span><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">)</span></sub>] <span 
+class="cmsy-10">≤</span><img 
+src="MTP158x.png" alt="α
+--
+m"  class="frac" align="middle" /><span 
+class="cmex-10">∑</span>
+     <sub><span 
+class="cmmi-7">i</span><span 
+class="cmsy-7">∈</span><span 
+class="cmmi-7">H</span><sub><span 
+class="cmr-5">0</span></sub></sub>1 = <img 
+src="MTP159x.png" alt="m
+--0
+m"  class="frac" align="middle" /><span 
+class="cmmi-10">α.</span>
+</td></tr></table>
+<!--l. 734--><p class="nopar" >
+                                                                               □
+</p>
+   </div>
+<!--l. 741--><p class="indent" >
+                                                                                
+
+                                                                                
+<a 
+ id="Q1-1-26"></a>
+                                                                                
+
+                                                                                
+</p>
+   <h2 class="likechapterHead"><a 
+ id="x1-240002"></a>Bibliography</h2>
+   <div class="thebibliography">
+   <p class="bibitem" ><span class="biblabel">
+ [1]<span class="bibsp">   </span></span><a 
+ id="XBH"></a>Benjamini Y., Hochberg Y. (1995) Controlling the False Discovery Rate: a Practical and
+   Powerful Approach to Multiple Testing. <span 
+class="cmti-10">Journal of the Royal Statistical Society, Series B</span>, <span 
+class="cmbx-10">57</span>
+   No. 1, 289-300.
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+ [2]<span class="bibsp">   </span></span><a 
+ id="XBY"></a>Benjamini Y., Yekutieli D. (2001) The Control of the False Discovery Rate in Multiple
+   Testing Under Dependency. <span 
+class="cmti-10">The Annals of Statistics</span>, <span 
+class="cmbx-10">29</span>, No. 4, 1165-1188.
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+ [3]<span class="bibsp">   </span></span><a 
+ id="XDiscovering FDR"></a>Benjamini Y., Hochberg Y. (2010) Discovering the False Discovery Rate. <span 
+class="cmti-10">Journal of the</span>
+   <span 
+class="cmti-10">Royal Statistical Society, Series B</span>, <span 
+class="cmbx-10">72</span>, Part 4, 405-416.
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+ [4]<span class="bibsp">   </span></span><a 
+ id="XLSI"></a>Efron, B. (2010) <span 
+class="cmti-10">Large-Scale Inference</span>. Cambridge University Press.
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+ [5]<span class="bibsp">   </span></span><a 
+ id="XMultiple Comparison Procedures"></a>Hochberg, Y.,Tamhane, A. C. (1987) <span 
+class="cmti-10">Multiple Comparison Procedures</span>. Wiley.
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+ [6]<span class="bibsp">   </span></span><a 
+ id="XHolm-Bonferroni"></a>Holm S. (1979) A Simple Sequentially Rejective Multiple Test Procedure. <span 
+class="cmti-10">Scandinavian</span>
+   <span 
+class="cmti-10">Journal of Statistics</span>. <span 
+class="cmbx-10">6</span>, 65-70.
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+ [7]<span class="bibsp">   </span></span>Robert H. (1956) An Empirical Bayes Approach to Statistics, <span 
+class="cmti-10">Berkeley Symposium on</span>
+   <span 
+class="cmti-10">Mathematical Statistics and Probability</span>, <span 
+class="cmbx-10">3.1</span>, 157-163.
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+ [8]<span class="bibsp">   </span></span><a 
+ id="XHyp Test Review"></a>Ronald  C.  (2005)  Testing  Fisher,  Neyman,  Pearson,  and  Bayes,  <span 
+class="cmti-10">The  American</span>
+   <span 
+class="cmti-10">Statistician</span>, <span 
+class="cmbx-10">59</span>, No.2, 121-126.
+                                                                                
+
+                                                                                
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+ [9]<span class="bibsp">   </span></span>Soriç,  B.  (1989)  Statistical  “discoveries”  and  eﬀect  size  estimations.  <span 
+class="cmti-10">Journal of the</span>
+   <span 
+class="cmti-10">American Statistical Association</span>. <span 
+class="cmbx-10">84</span>, 608-610.
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+ [10]<span class="bibsp">   </span></span>Wang,  R.,  Ramdas,  A.  (2020)  False  discovery  rate  with  e-values.  <span 
+class="cmti-10">arXiv  preprint,</span>
+   arXiv:2009.02824v2.
+</p>
+   </div>
+</p><br><br><br><br>
+
+
+
+</div></div></div></div>
+                                                                                
+
+                                                                                
+
+    
+</body> 
+</html>
+                                                                                
+
+

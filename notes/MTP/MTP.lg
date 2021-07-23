@@ -1,0 +1,345 @@
+htfcss: cmti  font-style: italic;
+htfcss: cmbx  font-weight: bold;
+htfcss: cmbxsl  font-weight: bold; font-style: oblique;
+htfcss: cmtt font-family: monospace,monospace;
+htfcss: cmmi font-style: italic;
+htfcss: cmmib font-style: italic; font-weight: bold;
+File: MTP.html
+File: MTP.css
+File: MTP.tmp
+Css: p{margin-top:0;margin-bottom:0}
+Css: p.indent{text-indent:0;}
+Css: p + p{margin-top:1em;}
+Css: p + div, p + pre {margin-top:1em;}
+Css: div + p, pre + p {margin-top:1em;}
+Css: @media print {div.crosslinks {visibility:hidden;}}
+Css: a img { border-top: 0; border-left: 0; border-right: 0; }
+Font_Css("4"): .small-caps{font-variant: small-caps; }
+Font_Css("10"): .htf-cmbx {font-weight: bold; font-style:normal;}
+Font_Css("12"): .htf-calligraphy {font-family:cursive}
+Font_Css("14"): .htf-italic {font-style: italic;}
+Font_Css("16"): .htf-bold {font-weight: bold;}
+Font_Css("12"): .htf-calligraphy-bold {font-family:cursive ; font-weight: bold; }
+Css: center { margin-top:1em; margin-bottom:1em; }
+Css: td center { margin-top:0em; margin-bottom:0em; }
+Css: .Canvas { position:relative; }
+Css: img.math{vertical-align:middle;}
+Css: li p.indent { text-indent: 0em }
+Css: li p:first-child{ margin-top:0em; }
+Css: li p:last-child, li div:last-child { margin-bottom:0.5em; }
+Css: li p~ul:last-child, li p~ol:last-child{ margin-bottom:0.5em; }
+Css: .enumerate1 {list-style-type:decimal;}
+Css: .enumerate2 {list-style-type:lower-alpha;}
+Css: .enumerate3 {list-style-type:lower-roman;}
+Css: .enumerate4 {list-style-type:upper-alpha;}
+Css: div.newtheorem { margin-bottom: 2em; margin-top: 2em;}
+Css: .obeylines-h,.obeylines-v {white-space: nowrap; }
+Css: div.obeylines-v p { margin-top:0; margin-bottom:0; }
+Css: .overline{ text-decoration:overline; }
+Css: .overline img{ border-top: 1px solid black; }
+Css: td.displaylines {text-align:center; white-space:nowrap;}
+Css: .centerline {text-align:center;}
+Css: .rightline {text-align:right;}
+Css: div.verbatim {font-family: monospace,monospace; white-space: nowrap; text-align:left; clear:both; }
+Css: .fbox {padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }
+Css: div.fbox {display:table}
+Css: div.center div.fbox {text-align:center; clear:both; padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }
+Css: div.minipage{width:100%;}
+Css: div.center, div.center div.center {text-align: center; margin-left:1em; margin-right:1em;}
+Css: div.center div {text-align: left;}
+Css: div.flushright, div.flushright div.flushright {text-align: right;}
+Css: div.flushright div {text-align: left;}
+Css: div.flushleft {text-align: left;}
+Css: .underline{ text-decoration:underline; }
+Css: .underline img{ border-bottom: 1px solid black; margin-bottom:1pt; }
+Css: .framebox-c, .framebox-l, .framebox-r { padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }
+Css: .framebox-c {text-align:center;}
+Css: .framebox-l {text-align:left;}
+Css: .framebox-r {text-align:right;}
+Css: span.thank-mark{ vertical-align: super }
+Css: span.footnote-mark sup.textsuperscript, span.footnote-mark a sup.textsuperscript{ font-size:80%; }
+Css: div.tabular, div.center div.tabular {text-align: center; margin-top:0.5em; margin-bottom:0.5em; }
+Css: table.tabular td p{margin-top:0em;}
+Css: table.tabular {margin-left: auto; margin-right: auto;}
+Css: td p:first-child{ margin-top:0em; }
+Css: td p:last-child{ margin-bottom:0em; }
+Css: div.td00{ margin-left:0pt; margin-right:0pt; }
+Css: div.td01{ margin-left:0pt; margin-right:5pt; }
+Css: div.td10{ margin-left:5pt; margin-right:0pt; }
+Css: div.td11{ margin-left:5pt; margin-right:5pt; }
+Css: table[rules] {border-left:solid black 0.4pt; border-right:solid black 0.4pt; }
+Css: td.td00{ padding-left:0pt; padding-right:0pt; }
+Css: td.td01{ padding-left:0pt; padding-right:5pt; }
+Css: td.td10{ padding-left:5pt; padding-right:0pt; }
+Css: td.td11{ padding-left:5pt; padding-right:5pt; }
+Css: table[rules] {border-left:solid black 0.4pt; border-right:solid black 0.4pt; }
+Css: .hline hr, .cline hr{ height : 0px; margin:0px; }
+Css: .hline td, .cline td{ padding: 0; }
+Css: .hline hr, .cline hr{border:none;border-top:1px solid black;}
+Css: .tabbing-right {text-align:right;}
+Css: div.float, div.figure {margin-left: auto; margin-right: auto;}
+Css: div.float img {text-align:center;}
+Css: div.figure img {text-align:center;}
+Css: .marginpar,.reversemarginpar {width:20%; float:right; text-align:left; margin-left:auto; margin-top:0.5em; font-size:85%; text-decoration:underline;}
+Css: .marginpar p,.reversemarginpar p{margin-top:0.4em; margin-bottom:0.4em;}
+Css: .reversemarginpar{float:left;}
+Css: table.equation {width:100%;}
+Css: .equation td{text-align:center; }
+Css: td.equation { margin-top:1em; margin-bottom:1em; } 
+Css: td.equation-label { width:5%; text-align:center; }
+Css: td.eqnarray4 { width:5%; white-space: normal; }
+Css: td.eqnarray2 { width:5%; }
+Css: table.eqnarray-star, table.eqnarray {width:100%;}
+Css: div.eqnarray{text-align:center;}
+Css: div.array {text-align:center;}
+Css: div.pmatrix {text-align:center;}
+Css: table.pmatrix {width:100%;}
+Css: span.pmatrix img{vertical-align:middle;}
+Css: div.pmatrix {text-align:center;}
+Css: table.pmatrix {width:100%;}
+Css: span.bar-css {text-decoration:overline;}
+Css: table.tabular{border-collapse: collapse; border-spacing: 0;}
+Css: img.cdots{vertical-align:middle;}
+Css: .partToc a, .partToc, .likepartToc a, .likepartToc {line-height: 200%; font-weight:bold; font-size:110%;}
+Css: .chapterToc a, .chapterToc, .likechapterToc a, .likechapterToc, .appendixToc a, .appendixToc {line-height: 200%; font-weight:bold;}
+Css: .index-item, .index-subitem, .index-subsubitem {display:block}
+Css: div.caption {text-indent:-2em; margin-left:3em; margin-right:1em; text-align:left;}
+Css: div.caption span.id{font-weight: bold; white-space: nowrap; }
+Css: h1.partHead{text-align: center}
+Css: p.bibitem { text-indent: -2em; margin-left: 2em; margin-top:0.6em; margin-bottom:0.6em; }
+Css: p.bibitem-p { text-indent: 0em; margin-left: 2em; margin-top:0.6em; margin-bottom:0.6em; }
+Css: .paragraphHead, .likeparagraphHead { margin-top:2em; font-weight: bold;}
+Css: .subparagraphHead, .likesubparagraphHead { font-weight: bold;}
+Css: .quote {margin-bottom:0.25em; margin-top:0.25em; margin-left:1em; margin-right:1em; text-align:justify;}
+Css: .verse{white-space:nowrap; margin-left:2em}
+Css: div.maketitle {text-align:center;}
+Css: h2.titleHead{text-align:center;}
+Css: div.maketitle{ margin-bottom: 2em; }
+Css: div.author, div.date {text-align:center;}
+Css: div.thanks{text-align:left; margin-left:10%; font-size:85%; font-style:italic; }
+Css: div.author{white-space: nowrap;}
+Css: .quotation {margin-bottom:0.25em; margin-top:0.25em; margin-left:1em; }
+Css: h1.partHead{text-align: center}
+Css: .abstract p {margin-left:5%; margin-right:5%;}
+Css: div.abstract {width:100%;}
+Css: figure.float, div.figure {margin-left: auto; margin-right: auto;}
+Css: figure.float img {text-align:center;}
+Css: figure.figure img {text-align:center;}
+Css: figure.figure > p {text-align:center;}
+Css: figcaption.caption {text-indent:-2em; margin-left:3em; margin-right:1em; text-align:center;}
+Css: figcaption.caption span.id{font-weight: bold; white-space: nowrap; }
+Css: .equation td{text-align:center; }
+Css: .equation-star td{text-align:center; }
+Css: table.equation-star { width:100%; }
+Css: table.equation { width:100%; }
+Css: table.align, table.alignat, table.xalignat, table.xxalignat, table.flalign {width:95%; margin-left:5%; white-space: nowrap;}
+Css: table.align-star, table.alignat-star, table.xalignat-star, table.flalign-star {margin-left:auto; margin-right:auto; white-space: nowrap;}
+Css: td.align-label { width:5%; text-align:center; }
+Css: td.align-odd { text-align:right; padding-right:0.3em;}
+Css: td.align-even { text-align:left; padding-right:0.6em;}
+Css: table.multline, table.multline-star {width:100%;}
+Css: td.gather {text-align:center; }
+Css: table.gather {width:100%;}
+Css: div.gather-star {text-align:center;}
+Css: dt.enumerate-enumitem{float:left; clear:left; margin-left:1em; margin-right:1em;}
+Css: span.textso{letter-spacing: 0.3em; word-spacing: 0.3em}
+Css: span.textul{text-decoration:underline}
+Css: span.textst{text-decoration:line-through}
+Css: span.textcaps{font-variant:small-caps}
+Css: .figure img.graphics {margin-left:10%;}
+Css: #TBL-2 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+Css: #TBL-2{border-collapse:collapse;}
+Css: #TBL-2 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+Css: #TBL-2{border-collapse:collapse;}
+Css: #TBL-2 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+Css: #TBL-2{border-collapse:collapse;}
+Css: #TBL-2 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+Css: #TBL-2{border-collapse:collapse;}
+--- needs --- MTP.idv[2] ==> MTP0x.png ---
+Css: #TBL-7 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+Css: #TBL-7{border-collapse:collapse;}
+Css: #TBL-7 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+Css: #TBL-7{border-collapse:collapse;}
+Css: #TBL-7 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+Css: #TBL-7{border-collapse:collapse;}
+Css: #TBL-7 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+Css: #TBL-7{border-collapse:collapse;}
+Css: #TBL-7 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+Css: #TBL-7{border-collapse:collapse;}
+--- needs --- MTP.idv[4] ==> MTP1x.png ---
+--- needs --- MTP.idv[5] ==> MTP2x.png ---
+--- needs --- MTP.idv[7] ==> MTP3x.png ---
+--- needs --- MTP.idv[8] ==> MTP4x.png ---
+--- needs --- MTP.idv[9] ==> MTP5x.png ---
+--- needs --- MTP.idv[11] ==> MTP6x.png ---
+--- needs --- MTP.idv[12] ==> MTP7x.png ---
+--- needs --- MTP.idv[13] ==> MTP8x.png ---
+--- needs --- MTP.idv[14] ==> MTP9x.png ---
+--- needs --- MTP.idv[15] ==> MTP10x.png ---
+--- needs --- MTP.idv[16] ==> MTP11x.png ---
+--- needs --- MTP.idv[17] ==> MTP12x.png ---
+--- needs --- MTP.idv[18] ==> MTP13x.png ---
+--- needs --- MTP.idv[19] ==> MTP14x.png ---
+--- needs --- MTP.idv[20] ==> MTP15x.png ---
+--- needs --- MTP.idv[21] ==> MTP16x.png ---
+--- needs --- MTP.idv[22] ==> MTP17x.png ---
+--- needs --- MTP.idv[23] ==> MTP18x.png ---
+--- needs --- MTP.idv[24] ==> MTP19x.png ---
+--- needs --- MTP.idv[25] ==> MTP20x.png ---
+--- needs --- MTP.idv[26] ==> MTP21x.png ---
+--- needs --- MTP.idv[28] ==> MTP22x.png ---
+--- needs --- MTP.idv[29] ==> MTP23x.png ---
+--- needs --- MTP.idv[30] ==> MTP24x.png ---
+--- needs --- MTP.idv[31] ==> MTP25x.png ---
+--- needs --- MTP.idv[32] ==> MTP26x.png ---
+--- needs --- MTP.idv[33] ==> MTP27x.png ---
+--- needs --- MTP.idv[34] ==> MTP28x.png ---
+--- needs --- MTP.idv[36] ==> MTP29x.png ---
+--- needs --- MTP.idv[37] ==> MTP30x.png ---
+--- needs --- MTP.idv[38] ==> MTP31x.png ---
+--- needs --- MTP.idv[40] ==> MTP32x.png ---
+--- needs --- MTP.idv[41] ==> MTP33x.png ---
+--- needs --- MTP.idv[42] ==> MTP34x.png ---
+--- needs --- MTP.idv[43] ==> MTP35x.png ---
+--- needs --- MTP.idv[44] ==> MTP36x.png ---
+--- needs --- MTP.idv[46] ==> MTP37x.png ---
+--- needs --- MTP.idv[47] ==> MTP38x.png ---
+--- needs --- MTP.idv[48] ==> MTP39x.png ---
+--- needs --- MTP.idv[50] ==> MTP40x.png ---
+--- needs --- MTP.idv[51] ==> MTP41x.png ---
+--- needs --- MTP.idv[52] ==> MTP42x.png ---
+--- needs --- MTP.idv[54] ==> MTP43x.png ---
+--- needs --- MTP.idv[55] ==> MTP44x.png ---
+--- needs --- MTP.idv[56] ==> MTP45x.png ---
+--- needs --- MTP.idv[57] ==> MTP46x.png ---
+--- needs --- MTP.idv[58] ==> MTP47x.png ---
+--- needs --- MTP.idv[59] ==> MTP48x.png ---
+--- needs --- MTP.idv[60] ==> MTP49x.png ---
+--- needs --- MTP.idv[61] ==> MTP50x.png ---
+--- needs --- MTP.idv[62] ==> MTP51x.png ---
+--- needs --- MTP.idv[64] ==> MTP52x.png ---
+--- needs --- MTP.idv[65] ==> MTP53x.png ---
+--- needs --- MTP.idv[66] ==> MTP54x.png ---
+--- needs --- MTP.idv[67] ==> MTP55x.png ---
+--- needs --- MTP.idv[69] ==> MTP56x.png ---
+--- needs --- MTP.idv[71] ==> MTP57x.png ---
+--- needs --- MTP.idv[72] ==> MTP58x.png ---
+--- needs --- MTP.idv[73] ==> MTP59x.png ---
+--- needs --- MTP.idv[74] ==> MTP60x.png ---
+--- needs --- MTP.idv[75] ==> MTP61x.png ---
+--- needs --- MTP.idv[76] ==> MTP62x.png ---
+--- needs --- MTP.idv[78] ==> MTP63x.png ---
+--- needs --- MTP.idv[79] ==> MTP64x.png ---
+--- needs --- MTP.idv[80] ==> MTP65x.png ---
+--- needs --- MTP.idv[81] ==> MTP66x.png ---
+--- needs --- MTP.idv[82] ==> MTP67x.png ---
+--- needs --- MTP.idv[84] ==> MTP68x.png ---
+--- needs --- MTP.idv[85] ==> MTP69x.png ---
+--- needs --- MTP.idv[87] ==> MTP70x.png ---
+--- needs --- MTP.idv[88] ==> MTP71x.png ---
+--- needs --- MTP.idv[89] ==> MTP72x.png ---
+--- needs --- MTP.idv[90] ==> MTP73x.png ---
+--- needs --- MTP.idv[92] ==> MTP74x.png ---
+--- needs --- MTP.idv[93] ==> MTP75x.png ---
+--- needs --- MTP.idv[94] ==> MTP76x.png ---
+--- needs --- MTP.idv[95] ==> MTP77x.png ---
+--- needs --- MTP.idv[96] ==> MTP78x.png ---
+--- needs --- MTP.idv[98] ==> MTP79x.png ---
+--- needs --- MTP.idv[99] ==> MTP80x.png ---
+--- needs --- MTP.idv[101] ==> MTP81x.png ---
+--- needs --- MTP.idv[103] ==> MTP82x.png ---
+--- needs --- MTP.idv[104] ==> MTP83x.png ---
+--- needs --- MTP.idv[106] ==> MTP84x.png ---
+--- needs --- MTP.idv[107] ==> MTP85x.png ---
+--- needs --- MTP.idv[108] ==> MTP86x.png ---
+--- needs --- MTP.idv[109] ==> MTP87x.png ---
+--- needs --- MTP.idv[110] ==> MTP88x.png ---
+--- needs --- MTP.idv[111] ==> MTP89x.png ---
+--- needs --- MTP.idv[113] ==> MTP90x.png ---
+--- needs --- MTP.idv[114] ==> MTP91x.png ---
+--- needs --- MTP.idv[115] ==> MTP92x.png ---
+--- needs --- MTP.idv[116] ==> MTP93x.png ---
+--- needs --- MTP.idv[117] ==> MTP94x.png ---
+--- needs --- MTP.idv[118] ==> MTP95x.png ---
+--- needs --- MTP.idv[120] ==> MTP96x.png ---
+--- needs --- MTP.idv[122] ==> MTP97x.png ---
+--- needs --- MTP.idv[123] ==> MTP98x.png ---
+--- needs --- MTP.idv[124] ==> MTP99x.png ---
+--- needs --- MTP.idv[125] ==> MTP100x.png ---
+--- needs --- MTP.idv[126] ==> MTP101x.png ---
+--- needs --- MTP.idv[127] ==> MTP102x.png ---
+--- needs --- MTP.idv[129] ==> MTP103x.png ---
+--- needs --- MTP.idv[131] ==> MTP104x.png ---
+--- needs --- MTP.idv[132] ==> MTP105x.png ---
+--- needs --- MTP.idv[134] ==> MTP106x.png ---
+--- needs --- MTP.idv[135] ==> MTP107x.png ---
+--- needs --- MTP.idv[136] ==> MTP108x.png ---
+--- needs --- MTP.idv[137] ==> MTP109x.png ---
+--- needs --- MTP.idv[139] ==> MTP110x.png ---
+--- needs --- MTP.idv[140] ==> MTP111x.png ---
+--- needs --- MTP.idv[142] ==> MTP112x.png ---
+--- needs --- MTP.idv[144] ==> MTP113x.png ---
+--- needs --- MTP.idv[145] ==> MTP114x.png ---
+--- needs --- MTP.idv[146] ==> MTP115x.png ---
+--- needs --- MTP.idv[147] ==> MTP116x.png ---
+--- needs --- MTP.idv[148] ==> MTP117x.png ---
+--- needs --- MTP.idv[149] ==> MTP118x.png ---
+--- needs --- MTP.idv[150] ==> MTP119x.png ---
+--- needs --- MTP.idv[151] ==> MTP120x.png ---
+--- needs --- MTP.idv[152] ==> MTP121x.png ---
+--- needs --- MTP.idv[154] ==> MTP122x.png ---
+--- needs --- MTP.idv[155] ==> MTP123x.png ---
+--- needs --- MTP.idv[156] ==> MTP124x.png ---
+--- needs --- MTP.idv[157] ==> MTP125x.png ---
+--- needs --- MTP.idv[159] ==> MTP126x.png ---
+--- needs --- MTP.idv[161] ==> MTP127x.png ---
+--- needs --- MTP.idv[163] ==> MTP128x.png ---
+--- needs --- MTP.idv[165] ==> MTP129x.png ---
+--- needs --- MTP.idv[167] ==> MTP130x.png ---
+--- needs --- MTP.idv[168] ==> MTP131x.png ---
+--- needs --- MTP.idv[169] ==> MTP132x.png ---
+--- needs --- MTP.idv[170] ==> MTP133x.png ---
+--- needs --- MTP.idv[171] ==> MTP134x.png ---
+--- needs --- MTP.idv[172] ==> MTP135x.png ---
+--- needs --- MTP.idv[173] ==> MTP136x.png ---
+--- needs --- MTP.idv[174] ==> MTP137x.png ---
+--- needs --- MTP.idv[175] ==> MTP138x.png ---
+--- needs --- MTP.idv[176] ==> MTP139x.png ---
+--- needs --- MTP.idv[177] ==> MTP140x.png ---
+--- needs --- MTP.idv[178] ==> MTP141x.png ---
+--- needs --- MTP.idv[179] ==> MTP142x.png ---
+--- needs --- MTP.idv[180] ==> MTP143x.png ---
+--- needs --- MTP.idv[181] ==> MTP144x.png ---
+--- needs --- MTP.idv[182] ==> MTP145x.png ---
+--- needs --- MTP.idv[184] ==> MTP146x.png ---
+--- needs --- MTP.idv[185] ==> MTP147x.png ---
+--- needs --- MTP.idv[186] ==> MTP148x.png ---
+--- needs --- MTP.idv[187] ==> MTP149x.png ---
+--- needs --- MTP.idv[188] ==> MTP150x.png ---
+--- needs --- MTP.idv[189] ==> MTP151x.png ---
+--- needs --- MTP.idv[190] ==> MTP152x.png ---
+--- needs --- MTP.idv[192] ==> MTP153x.png ---
+--- needs --- MTP.idv[193] ==> MTP154x.png ---
+--- needs --- MTP.idv[194] ==> MTP155x.png ---
+--- needs --- MTP.idv[195] ==> MTP156x.png ---
+--- needs --- MTP.idv[196] ==> MTP157x.png ---
+--- needs --- MTP.idv[197] ==> MTP158x.png ---
+--- needs --- MTP.idv[198] ==> MTP159x.png ---
+--- characters ---
+Font("cmex","10","10","100")
+Font("cmr","5","5","100")
+Font("cmr","7","7","100")
+Font("cmr","10","10","100")
+Font("cmmi","5","5","100")
+Font("cmmi","7","7","100")
+Font("cmmi","10","10","100")
+Font("cmsy","5","5","100")
+Font("cmsy","7","7","100")
+Font("cmsy","10","10","100")
+Font("cmr","17","17","100")
+Font("cmr","12","12","100")
+Font("cmtt","10","10","100")
+Font("cmbx","10","10","100")
+Font("msam","10","10","100")
+Font("msbm","10","10","100")
+Font("cmti","10","10","100")

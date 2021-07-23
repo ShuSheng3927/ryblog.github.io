@@ -1,0 +1,29 @@
+\expandafter\ifx\csname doTocEntry\endcsname\relax \expandafter\endinput\fi 
+\doTocEntry\toclikechapter{}{\csname a:TocLink\endcsname{1}{x1-1000}{QQ2-1-1}{Contents}}{2}\relax 
+\doTocEntry\tocchapter{1}{\csname a:TocLink\endcsname{1}{x1-20001}{QQ2-1-2}{Background}}{4}\relax 
+\doTocEntry\tocsection{1.1}{\csname a:TocLink\endcsname{1}{x1-30001}{QQ2-1-3}{Frequentist Hypothesis Testing}}{4}\relax 
+\doTocEntry\tocsection{1.2}{\csname a:TocLink\endcsname{1}{x1-40002}{QQ2-1-4}{Single Hypothesis Testing}}{5}\relax 
+\doTocEntry\toclot{1.1}{\csname a:TocLink\endcsname{1}{x1-40011}{}{\ignorespaces Single Hypothesis Testing Result}}{table}\relax 
+\doTocEntry\tocsection{1.3}{\csname a:TocLink\endcsname{1}{x1-50003}{QQ2-1-6}{Organisation of Chapters}}{8}\relax 
+\doTocEntry\tocchapter{2}{\csname a:TocLink\endcsname{1}{x1-60002}{QQ2-1-7}{Family-wise Error Rate}}{9}\relax 
+\doTocEntry\tocsection{2.1}{\csname a:TocLink\endcsname{1}{x1-70001}{QQ2-1-8}{FWER}}{9}\relax 
+\doTocEntry\toclot{2.1}{\csname a:TocLink\endcsname{1}{x1-70011}{}{\ignorespaces Multiple Hypothesis Testing Result}}{table}\relax 
+\doTocEntry\tocsection{2.2}{\csname a:TocLink\endcsname{1}{x1-80002}{QQ2-1-10}{Bonferroni Correction}}{12}\relax 
+\doTocEntry\tocsection{2.3}{\csname a:TocLink\endcsname{1}{x1-90003}{QQ2-1-11}{Holm-Bonferroni Method}}{14}\relax 
+\doTocEntry\tocsection{2.4}{\csname a:TocLink\endcsname{1}{x1-100004}{QQ2-1-12}{Issues with Controlling FWER}}{15}\relax 
+\doTocEntry\tocchapter{3}{\csname a:TocLink\endcsname{1}{x1-110003}{QQ2-1-13}{False Discovery Rate}}{16}\relax 
+\doTocEntry\tocsection{3.1}{\csname a:TocLink\endcsname{1}{x1-120001}{QQ2-1-14}{FDR}}{16}\relax 
+\doTocEntry\tocsection{3.2}{\csname a:TocLink\endcsname{1}{x1-130002}{QQ2-1-15}{Benjamini-Hochberg Procedure}}{17}\relax 
+\doTocEntry\tocsection{3.3}{\csname a:TocLink\endcsname{1}{x1-140003}{QQ2-1-16}{Dependency of Test Statistics}}{23}\relax 
+\doTocEntry\tocsection{3.4}{\csname a:TocLink\endcsname{1}{x1-150004}{QQ2-1-17}{Alternative Proof for Theorem \o:ref {thm:BH} \& \o:ref {thm-BY}}}{31}\relax 
+\doTocEntry\tocchapter{4}{\csname a:TocLink\endcsname{1}{x1-160004}{QQ2-1-18}{FDR Control using Empirical Bayes}}{39}\relax 
+\doTocEntry\tocsection{4.1}{\csname a:TocLink\endcsname{1}{x1-170001}{QQ2-1-19}{Bayesian Hypothesis Testing}}{39}\relax 
+\doTocEntry\tocsection{4.2}{\csname a:TocLink\endcsname{1}{x1-180002}{QQ2-1-20}{Bayes FDR}}{40}\relax 
+\doTocEntry\tocsection{4.3}{\csname a:TocLink\endcsname{1}{x1-190003}{QQ2-1-21}{BH Procedure using Empirical Bayes}}{42}\relax 
+\doTocEntry\tocsection{4.4}{\csname a:TocLink\endcsname{1}{x1-200004}{QQ2-1-22}{Quality of Bayesian FDR estimator}}{43}\relax 
+\doTocEntry\tocchapter{5}{\csname a:TocLink\endcsname{1}{x1-210005}{QQ2-1-23}{FDR Control using E-Values}}{48}\relax 
+\doTocEntry\tocsection{5.1}{\csname a:TocLink\endcsname{1}{x1-220001}{QQ2-1-24}{E-Variable and E-Value}}{48}\relax 
+\doTocEntry\tocsection{5.2}{\csname a:TocLink\endcsname{1}{x1-230002}{QQ2-1-25}{e-BH procedure}}{50}\relax 
+\doTocEntry\tocchapter{}{\csname a:TocLink\endcsname{1}{Q1-1-26}{}{Bibliography}}{53}\relax 
+\doTocEntry\toclikechapter{}{\csname a:TocLink\endcsname{1}{x1-240002}{QQ2-1-27}{Bibliography}}{54}\relax 
+\par 
